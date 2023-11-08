@@ -1,10 +1,17 @@
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>telephones</title>
+    <title>Liste des téléphones</title>
 </head>
 <body>
-    <h1>liste des telephones</h1>
+    <h1>Liste des téléphones</h1>
+    <ul>
+        {% for phone in phones %}
+            <li>
+                <h2>{{ phone.phone_name }}</h2>
+                <img src="{{ phone.image }}" alt="{{ phone.phone_name }}">
+            </li>
+        {% endfor %}
+    </ul>
 </body>
 </html>

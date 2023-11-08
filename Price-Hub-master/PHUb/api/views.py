@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.core.mail import EmailMessage
 from django.contrib import messages
+from .models import Phone
 
 # Create your views here.
 def log_in(request):
@@ -79,4 +80,5 @@ def logout(request):
 def index(request):
     return render (request,'index.html',{})
 def telephones(request):
-    return render(request,'telephones.html',{})
+    phones = Phone.objects.all()
+    return render(request, 'telephones.html', {'phones': phones})
