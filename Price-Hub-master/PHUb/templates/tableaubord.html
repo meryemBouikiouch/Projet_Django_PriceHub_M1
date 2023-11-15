@@ -1,0 +1,22 @@
+<!-- tableaubord.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Les balises meta et les liens vers les styles et scripts restent inchangés -->
+    <!-- ... -->
+    <title>Tableau de bord</title>
+</head>
+<body>
+    {% for visite in historique_visites %}
+    <div>
+        <p>Aujourd'hui, tu as visité le magasin '{{ visite.store_name }}' à '{{ visite.location }}' et tu as vu un téléphone de marque '{{ visite.brand }}' {% if visite.phone_name %}avec le nom '{{ visite.phone_name }}'{% endif %} et le prix '{{ visite.prix }}'.</p>
+        <!-- Ajouter un bouton de suppression pour chaque visite -->
+        <form method="post" action="{% url 'supprimer_visite' visite.id %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Supprimer</button>
+        </form>
+    </div>
+    {% endfor %}
+    <a href="{% url 'histoire' %}" class="btn btn-primary">Ajouter une nouvelle histoire</a>
+</body>
+</html>
