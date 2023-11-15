@@ -10,6 +10,7 @@ from django.contrib import messages
 from .models import Phone
 from .forms import AdvancedSearchForm
 
+
 # Create your views here.
 def log_in(request):
     if request.method == "POST":
