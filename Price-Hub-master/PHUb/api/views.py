@@ -9,6 +9,8 @@ from django.core.mail import EmailMessage
 from django.contrib import messages
 from .models import Phone
 from .forms import AdvancedSearchForm
+from .models import HistoriqueVisite
+from django.shortcuts import render, redirect, get_object_or_404
 
 
 # Create your views here.
@@ -150,3 +152,40 @@ def phone_detail(request, phone_id):
     phone = get_object_or_404(Phone, identifiant=phone_id)
     context = {'phone': phone}
     return render(request, 'phone_detail.html', context)
+<<<<<<< HEAD
+=======
+def tableaubord(request):
+    if request.method == 'POST':
+        # Récupérer les données du formulaire
+        brand = request.POST.get('brand')
+        phone_name = request.POST.get('phone_name')
+        store_name = request.POST.get('Nom du magasin')
+        location = request.POST.get('Lieu')
+        prix = request.POST.get('prix')
+
+        # Validation des champs non nuls
+        if brand is not None and phone_name is not None:
+            # Enregistrement dans la base de données
+            historique_visite= HistoriqueVisite.objects.create(
+                brand=brand,
+                phone_name=phone_name,
+                store_name=store_name,
+                location=location,
+                prix=prix,
+            )
+
+    # Récupérer toutes les visites enregistrées
+    historique_visites = HistoriqueVisite.objects.all()
+
+    # Renvoyer la liste des visites dans le contexte de la page tableau de bord
+    return render(request, 'tableaubord.html', {'historique_visites': historique_visites})
+
+def histoire(request):
+    phone_name = Phone.objects.values_list('phone_name', flat=True)
+    brand = Phone.objects.values_list('brand', flat=True).distinct()
+    return render(request, 'histoire.html', {'phone_name': phone_name, 'brand': brand})
+def supprimer_visite(request, visite_id):
+    visite = get_object_or_404(HistoriqueVisite, pk=visite_id)
+    visite.delete()
+    return redirect('tableaubord')
+>>>>>>> meryem
