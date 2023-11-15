@@ -1,4 +1,5 @@
 
+from django import views
 from django.urls import  path
 from .views import *
 
@@ -9,5 +10,5 @@ urlpatterns = [
     path('logout/',logout,name='logout'),
     path('home/',home,name='home'),
     path('telephones/',telephones,name='telephones'),
-    
+     path('telephones/<str:phone_id>/', phone_detail, name='phone_detail'),
 ]

@@ -28,7 +28,7 @@ class Phone(models.Model):
     video_240fps = models.BooleanField()
     video_480fps = models.BooleanField()
     video_960fps = models.BooleanField()
-    price_USD = models.DecimalField(max_digits=10, decimal_places=2)
+    price_USD = models.IntegerField()
 
     def __str__(self):
         return self.phone_name

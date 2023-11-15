@@ -38,9 +38,9 @@
       <div class="masthead-content">
         <div class="container">
           <!-- barre de recherche -->
-        <form class="d-flex ">
-          <input class="form-control me-2" type="search" placeholder="Rechercher" aria-label="Rechercher" />
-          <button class="btn btn-secondary" type="submit">Rechercher</button>
+          <form class="d-flex" method="get" action="{% url 'telephones' %}">
+            <input class="form-control me-2" type="search" name="q" placeholder="Rechercher" aria-label="Rechercher" />
+            <button class="btn btn-secondary" type="submit">Rechercher</button>
         </form>
           <h1 class="masthead-heading mb-0">BIENVENUE CHEZ PRICE_HUB</h1>
           <h2 class="masthead-subheading mb-0">Vous vivrez la meilleure expérience</h2>
