@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détails du Téléphone</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa; /* Couleur de fond légère */
+            color: #343a40; /* Couleur de texte principale */
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #007bff; /* Couleur de titre */
+            border-bottom: 2px solid #007bff; /* Ligne de séparation sous le titre */
+            padding-bottom: 10px;
+        }
+
+        p {
+            margin: 10px 0;
+        }
+
+        ul {
+            list-style-type: none; /* Supprime les puces de la liste */
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        li:before {
+            content: "\2022"; /* Utilisation du caractère • comme pointeur de liste */
+            color: #007bff; /* Couleur du pointeur de liste */
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ phone.phone_name }}</h1>
+    <p>Rating: {{ phone.rating }}</p>
+    <p>Total Reviews: {{ phone.totalReviews }}</p>
+    <p>Price: {{ phone.price_USD }}</p>
+    <p>Operating System: {{ phone.os }}</p>
+    <p>Screen Size (inches): {{ phone.inches }}</p>
+    <p>Resolution: {{ phone.resolution }}</p>
+    <p>Battery: {{ phone.battery }} mAh</p>
+    <p>Battery Type: {{ phone.battery_type }}</p>
+    <p>RAM: {{ phone.ram_GB }} GB</p>
+    <p>Announcement Date: {{ phone.announcement_date }}</p>
+    <p>Weight: {{ phone.weight_g }} g</p>
+    <p>Storage: {{ phone.storage_GB }} GB</p>
+    <p>Video Capabilities:</p>
+    <ul>
+        <li>720p: {% if phone.video_720p %}Supported{% else %}Not Supported{% endif %}</li>
+        <li>1080p: {% if phone.video_1080p %}Supported{% else %}Not Supported{% endif %}</li>
+        <li>4K: {% if phone.video_4K %}Supported{% else %}Not Supported{% endif %}</li>
+        <li>8K: {% if phone.video_8K %}Supported{% else %}Not Supported{% endif %}</li>
+        <li>30fps: {% if phone.video_30fps %}Supported{% else %}Not Supported{% endif %}</li>
+        <li>60fps: {% if phone.video_60fps %}Supported{% else %}Not Supported{% endif %}</li>
+        <li>120fps: {% if phone.video_120fps %}Supported{% else %}Not Supported{% endif %}</li>
+        <li>240fps: {% if phone.video_240fps %}Supported{% else %}Not Supported{% endif %}</li>
+        <li>480fps: {% if phone.video_480fps %}Supported{% else %}Not Supported{% endif %}</li>
+        <li>960fps: {% if phone.video_960fps %}Supported{% else %}Not Supported{% endif %}</li>
+    </ul>
+</body>
+</html>
