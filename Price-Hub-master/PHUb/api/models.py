@@ -33,3 +33,13 @@ class Phone(models.Model):
     def __str__(self):
         return self.phone_name
 # Create your models here.
+class HistoriqueVisite(models.Model):
+    brand = models.CharField(max_length=100, null=True, blank=True)
+    phone_name = models.CharField(max_length=255, null=False, blank=False)
+    store_name = models.CharField(max_length=255)
+    location = models.CharField(max_length=255)
+    prix = models.DecimalField(max_digits=10, decimal_places=2)
+
+
+    def __str__(self):
+        return f"{self.brand} - {self.phone_name} - {self.store_name} - {self.location} - {self.prix}"

@@ -25,7 +25,13 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <a class="nav-link text-white no-modal" href="##">Téléphones</a>
+              <a class="nav-link text-white no-modal" href="##" id="bordLink">Tableau de bord</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white no-modal" href="##" id="histoireLink">Votre histoire d'aujourd'hui</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white no-modal" href="##" id="telephonesLink">Téléphones</a>
             </li>
             <li class="nav-item">
               <a class="nav-link text-white" href="{% url 'sign_up' %}">S'inscrire</a>
@@ -169,14 +175,28 @@
           })
         }
         // Ajout d'un écouteur pour le lien "Téléphones"
-        var phonesLink = document.querySelector('.nav-link.text-white.no-modal')
+        var phonesLink = document.getElementById('telephonesLink')
         if (phonesLink) {
           phonesLink.addEventListener('click', function (event) {
             event.preventDefault()
             openLoginModal()
           })
         }
-      
+      // Ajout d'un écouteur pour le lien "tabeau de bord"
+      var BordLink = document.getElementById('bordLink')
+      if (BordLink) {
+        BordLink.addEventListener('click', function (event) {
+          event.preventDefault()
+          openLoginModal()
+        })
+      }
+      var histoireLink = document.getElementById('histoireLink')
+      if (histoireLink) {
+        histoireLink.addEventListener('click', function (event) {
+          event.preventDefault()
+          openLoginModal()
+        })
+      }
         // Fermeture correcte de la fenêtre modale
         $('#loginModal').on('hidden.bs.modal', function () {
           $('body').removeClass('modal-open')

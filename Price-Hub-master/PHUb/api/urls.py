@@ -2,6 +2,7 @@
 from django import views
 from django.urls import  path
 from .views import *
+from . import views
 
 urlpatterns = [
     path('',index,name='index'),
@@ -10,5 +11,9 @@ urlpatterns = [
     path('logout/',logout,name='logout'),
     path('home/',home,name='home'),
     path('telephones/',telephones,name='telephones'),
-     path('telephones/<str:phone_id>/', phone_detail, name='phone_detail'),
+    path('telephones/<str:phone_id>/', phone_detail, name='phone_detail'),
+    path('histoire/',histoire,name='histoire'),
+    path('tableaubord/',tableaubord,name='tableaubord'),
+    path('supprimer_visite/<int:visite_id>/', views.supprimer_visite, name='supprimer_visite'),
+
 ]
