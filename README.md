@@ -7,3 +7,5 @@
 [![SQLite Version](https://img.shields.io/badge/SQLite-3-blue)](https://www.sqlite.org/index.html)
  
 [![GitHub release](https://img.shields.io/github/v/release/meryemBouikiouch/Projet_Django_PriceHub_M1.svg)](https://github.com/meryemBouikiouch/Projet_Django_PriceHub_M1/releases/tag/V0.2)
+
+[![codecov](https://codecov.io/gh/meryemBouikiouch/Projet_Django_PriceHub_M1/branch/master/graph/badge.svg)](https://codecov.io/gh/meryemBouikiouch/Projet_Django_PriceHub_M1)
