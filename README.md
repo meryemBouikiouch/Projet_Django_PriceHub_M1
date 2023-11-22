@@ -6,4 +6,4 @@
 
 [![SQLite Version](https://img.shields.io/badge/SQLite-3-blue)](https://www.sqlite.org/index.html)
  
-[![GitHub release](https://img.shields.io/github/v/release/dihiaDR/Projet_Django_PriceHub_M1.svg)](https://github.com/dihiaDR/Projet_Django_PriceHub_M1/releases)
+[![GitHub release](https://img.shields.io/github/v/Version0.2/dihiaDR/Projet_Django_PriceHub_M1.svg)](https://github.com/dihiaDR/Projet_Django_PriceHub_M1/Version0.2)
