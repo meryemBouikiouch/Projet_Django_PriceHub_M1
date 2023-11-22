@@ -10,4 +10,4 @@
 
 [![Django CI](https://github.com/meryemBouikiouch/Projet_Django_PriceHub_M1/actions/workflows/django.yml/badge.svg)](https://github.com/meryemBouikiouch/Projet_Django_PriceHub_M1/actions/workflows/django.yml)
 
-[![codecov](https://codecov.io/gh/meryemBouikiouch/Projet_Django_PriceHub_M1/branch/master/graph/badge.svg)](https://codecov.io/gh/meryemBouikiouch/Projet_Django_PriceHub_M1)
+
