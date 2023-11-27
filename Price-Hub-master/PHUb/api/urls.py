@@ -20,6 +20,8 @@ urlpatterns = [
     path('supprimer_visite/<int:visite_id>/', views.supprimer_visite, name='supprimer_visite'),
     path('supprimer_souhaits/<int:souhaits_id>/', views.supprimer_souhaits, name='supprimer_souhaits'),
     path('changer_statut/<int:souhait_id>/', changer_statut, name='changer_statut'),
+    path('shopping_meet/', shopping_meet, name='shopping_meet'),
+
 
 
 ]

@@ -239,7 +239,8 @@ def changer_statut(request, souhait_id):
         else:
             return JsonResponse({'success': False})
     
-
+def shopping_meet(request):
+    return render(request, 'ShoppingMeet.html', {})
 
 
    
