@@ -15,5 +15,5 @@ urlpatterns = [
     path('histoire/',histoire,name='histoire'),
     path('tableaubord/',tableaubord,name='tableaubord'),
     path('supprimer_visite/<int:visite_id>/', views.supprimer_visite, name='supprimer_visite'),
-
+    path('update_phone_detail/', update_phone_detail, name='update_phone_detail'),
 ]

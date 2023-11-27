@@ -11,3 +11,15 @@ class AdvancedSearchForm(forms.Form):
     storage_min = forms.IntegerField(required=False)
     storage_max = forms.IntegerField(required=False)
     brand = forms.CharField(max_length=50, required=False, label='Marque')
+
+class AddPhoneForm(forms.ModelForm):
+    class Meta:
+        model = Phone
+        exclude = []
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+    def clean(self):
+        cleaned_data = super().clean()
+        return cleaned_data
