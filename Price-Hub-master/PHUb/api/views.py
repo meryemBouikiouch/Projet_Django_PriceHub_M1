@@ -11,6 +11,9 @@ from .models import Phone
 from .forms import AdvancedSearchForm
 from .models import HistoriqueVisite
 from django.shortcuts import render, redirect, get_object_or_404
+from django.http import JsonResponse
+from .models import Souhaits
+
 
 
 # Create your views here.
@@ -155,21 +158,28 @@ def phone_detail(request, phone_id):
 def tableaubord(request):
     if request.method == 'POST':
         # Récupérer les données du formulaire
+        category = request.POST.get('category')
         brand = request.POST.get('brand')
-        phone_name = request.POST.get('phone_name')
+        name = request.POST.get('name')
         store_name = request.POST.get('Nom du magasin')
         location = request.POST.get('Lieu')
         prix = request.POST.get('prix')
-
+        date_of_visit = request.POST.get('date_of_visit')
+        # Récupérer les valeurs des champs "other" si la sélection est "Autre"
+        other_brand = request.POST.get('other_brand') if brand == 'other' else None
+        other_name = request.POST.get('other_name') if name == 'other' else None
+        other_category = request.POST.get('other_category') if category == 'other' else None
         # Validation des champs non nuls
-        if brand is not None and phone_name is not None:
+        if brand is not None and name is not None:
             # Enregistrement dans la base de données
             historique_visite= HistoriqueVisite.objects.create(
-                brand=brand,
-                phone_name=phone_name,
+                category=other_category if other_category else category,
+                brand=other_brand if other_brand else brand,
+                name=other_name if other_name else name,
                 store_name=store_name,
                 location=location,
                 prix=prix,
+                date_of_visit=date_of_visit,
             )
 
     # Récupérer toutes les visites enregistrées
@@ -179,11 +189,53 @@ def tableaubord(request):
     return render(request, 'tableaubord.html', {'historique_visites': historique_visites})
 
 def histoire(request):
-    phone_name = Phone.objects.values_list('phone_name', flat=True)
+    name = Phone.objects.values_list('phone_name', flat=True).distinct()
     brand = Phone.objects.values_list('brand', flat=True).distinct()
-    return render(request, 'histoire.html', {'phone_name': phone_name, 'brand': brand})
+    return render(request, 'histoire.html', {'name': name, 'brand': brand})
 def supprimer_visite(request, visite_id):
     visite = get_object_or_404(HistoriqueVisite, pk=visite_id)
     visite.delete()
     return redirect('tableaubord')
 
+def souhaits(request):
+    name = Phone.objects.values_list('phone_name', flat=True).distinct()
+    brand = Phone.objects.values_list('brand', flat=True).distinct()
+    return render (request,'souhaits.html',{'name': name, 'brand': brand})
+def save_souhaits(request):
+    if request.method == 'POST':
+        user = request.user
+        category = request.POST.get('category')
+        brand = request.POST.get('brand')
+        name = request.POST.get('name')
+        phone_number = request.POST.get('phone_number')
+        # Récupérer les valeurs des champs "other" si la sélection est "Autre"
+        other_brand = request.POST.get('other_brand') if brand == 'other' else None
+        other_name = request.POST.get('other_name') if name == 'other' else None
+        other_category = request.POST.get('other_category') if category == 'other' else None
+        if brand is not None and name is not None:
+           Souhaits.objects.create(
+            category=other_category if other_category else category,
+            brand=other_brand if other_brand else brand,
+            name=other_name if other_name else name,
+            user=user,
+            phone_number=phone_number)
+        return JsonResponse({'message': 'Les souhaits ont été enregistrés avec succès!'})
+    else:
+        return JsonResponse({'message': 'La requête n\'est pas de type POST'})
+def afficherSouhaits(request):
+    MesSouhaits = Souhaits.objects.all()
+    return render(request, 'afficherSouhaits.html', {'MesSouhaits': MesSouhaits})
+def supprimer_souhaits(request, souhaits_id):
+    souhaits = get_object_or_404(Souhaits, pk=souhaits_id)
+    souhaits.delete()
+    return redirect('afficherSouhaits')
+def changer_statut(request, souhait_id):
+        if request.method == 'POST':
+            souhait = Souhaits.objects.get(pk=souhait_id)
+            # Mettez à jour le statut comme vous le souhaitez
+            souhait.status = 'Clôturé'
+            souhait.save()
+            return JsonResponse({'success': True, 'nouveau_statut': souhait.status}) 
+        else:
+            return JsonResponse({'success': False})
+    
