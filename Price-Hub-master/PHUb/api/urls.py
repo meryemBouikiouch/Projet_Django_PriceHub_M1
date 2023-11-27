@@ -14,6 +14,11 @@ urlpatterns = [
     path('telephones/<str:phone_id>/', phone_detail, name='phone_detail'),
     path('histoire/',histoire,name='histoire'),
     path('tableaubord/',tableaubord,name='tableaubord'),
+    path('afficherSouhaits/',afficherSouhaits,name='afficherSouhaits'),
+    path('souhaits/',souhaits,name='souhaits'),
+    path('save_souhaits/', save_souhaits, name='save_souhaits'),
     path('supprimer_visite/<int:visite_id>/', views.supprimer_visite, name='supprimer_visite'),
+    path('supprimer_souhaits/<int:souhaits_id>/', views.supprimer_souhaits, name='supprimer_souhaits'),
+    path('changer_statut/<int:souhait_id>/', changer_statut, name='changer_statut'),
     path('update_phone_detail/', update_phone_detail, name='update_phone_detail'),
 ]
