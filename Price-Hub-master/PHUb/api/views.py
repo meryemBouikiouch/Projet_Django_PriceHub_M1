@@ -1,3 +1,4 @@
+import time
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render , redirect
 from django.core.validators import validate_email
@@ -8,7 +9,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.core.mail import EmailMessage
 from django.contrib import messages
 from .models import Phone
-from .forms import AdvancedSearchForm
+from .forms import AddPhoneForm, AdvancedSearchForm
 from .models import HistoriqueVisite
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse
@@ -146,15 +147,52 @@ def telephones(request):
             # Filtrer les téléphones en fonction des critères de recherche avancée
             phones = phones.filter(**filter_params)
 
+    # Gérer le formulaire d'ajout de téléphone
+    if request.method == 'POST' and 'ajouter_telephone' in request.POST:
+        form = AddPhoneForm(request.POST)
+        if form.is_valid():
+            phone_instance = form.save(commit=False)
+
+            # Générez un identifiant unique, par exemple, en utilisant la date et l'heure actuelles
+            phone_instance.identifiant = str(int(time.time()))
+
+            phone_instance.save()  # Enregistrez le téléphone dans la base de données
+            return redirect('telephones')  # Redirigez vers la page des téléphones après l'ajout
+    else:
+        form = AddPhoneForm()
+
     # Créer le contexte
-    context = {'phones': phones, 'query': query, 'sort_option': sort_option, 'advanced_search_form': advanced_search_form}
+    context = {
+        'phones': phones,
+        'query': query,
+        'sort_option': sort_option,
+        'advanced_search_form': advanced_search_form,
+        'add_phone_form': form,  # Ajoutez le formulaire d'ajout au contexte
+    }
 
     # Rendre le modèle avec le contexte
     return render(request, 'telephones.html', context)
+
 def phone_detail(request, phone_id):
     phone = get_object_or_404(Phone, identifiant=phone_id)
     context = {'phone': phone}
     return render(request, 'phone_detail.html', context)
+
+def update_phone_detail(request):
+    if request.method == 'POST':
+        phone_id = request.POST.get('phone_id')
+        new_price = request.POST.get('new_price')
+
+        # Validez et mettez à jour le prix dans la base de données
+        phone = get_object_or_404(Phone, identifiant=phone_id)
+        if new_price:
+            print(f"Ancien prix : {phone.price_USD}")
+            print(f"Nouveau prix : {new_price}")
+            phone.new_price = new_price
+            phone.price_USD = new_price  # Remplacer également le prix original
+            phone.save()
+
+    return redirect('telephones')
 def tableaubord(request):
     if request.method == 'POST':
         # Récupérer les données du formulaire
