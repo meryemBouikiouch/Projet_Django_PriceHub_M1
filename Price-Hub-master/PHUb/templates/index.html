@@ -25,10 +25,13 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
+              <a class="nav-link text-white no-modal" href="##" id="souhaitsLink">Mes souhaits</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link text-white no-modal" href="##" id="bordLink">Tableau de bord</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-white no-modal" href="##" id="histoireLink">Votre histoire d'aujourd'hui</a>
+              <a class="nav-link text-white no-modal" href="##" id="histoireLink">Votre histoire</a>
             </li>
             <li class="nav-item">
               <a class="nav-link text-white no-modal" href="##" id="telephonesLink">Téléphones</a>
@@ -178,6 +181,14 @@
         var phonesLink = document.getElementById('telephonesLink')
         if (phonesLink) {
           phonesLink.addEventListener('click', function (event) {
+            event.preventDefault()
+            openLoginModal()
+          })
+        }
+        // Ajout d'un écouteur pour le lien "souhaits"
+        var souhaitsLink = document.getElementById('souhaitsLink')
+        if (souhaitsLink) {
+          souhaitsLink.addEventListener('click', function (event) {
             event.preventDefault()
             openLoginModal()
           })

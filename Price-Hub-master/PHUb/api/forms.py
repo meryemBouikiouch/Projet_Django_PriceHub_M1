@@ -1,5 +1,6 @@
 from django import forms
 from .models import Phone
+from .models import Souhaits
 
 class AdvancedSearchForm(forms.Form):
     nom = forms.CharField(required=False)
@@ -11,3 +12,4 @@ class AdvancedSearchForm(forms.Form):
     storage_min = forms.IntegerField(required=False)
     storage_max = forms.IntegerField(required=False)
     brand = forms.CharField(max_length=50, required=False, label='Marque')
+
