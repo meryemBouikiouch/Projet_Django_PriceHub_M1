@@ -21,7 +21,5 @@ urlpatterns = [
     path('supprimer_souhaits/<int:souhaits_id>/', views.supprimer_souhaits, name='supprimer_souhaits'),
     path('changer_statut/<int:souhait_id>/', changer_statut, name='changer_statut'),
     path('shopping_meet/', shopping_meet, name='shopping_meet'),
-
-
-
+    path('update_phone_detail/', update_phone_detail, name='update_phone_detail'),
 ]

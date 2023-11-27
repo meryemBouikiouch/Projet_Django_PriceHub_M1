@@ -1,72 +1,72 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Détails du Téléphone</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f8f9fa; /* Couleur de fond légère */
-            color: #343a40; /* Couleur de texte principale */
-            margin: 0;
-            padding: 20px;
-        }
-
-        h1 {
-            color: #007bff; /* Couleur de titre */
-            border-bottom: 2px solid #007bff; /* Ligne de séparation sous le titre */
-            padding-bottom: 10px;
-        }
-
-        p {
-            margin: 10px 0;
-        }
-
-        ul {
-            list-style-type: none; /* Supprime les puces de la liste */
-            padding: 0;
-        }
-
-        li {
-            margin-bottom: 5px;
-        }
-
-        li:before {
-            content: "\2022"; /* Utilisation du caractère • comme pointeur de liste */
-            color: #007bff; /* Couleur du pointeur de liste */
-            display: inline-block;
-            width: 1em;
-            margin-left: -1em;
-        }
-    </style>
+    <link rel="stylesheet" href="{% static 'css/details.css' %}" />
 </head>
 <body>
-    <h1>{{ phone.phone_name }}</h1>
-    <p>Rating: {{ phone.rating }}</p>
-    <p>Total Reviews: {{ phone.totalReviews }}</p>
-    <p>Price: {{ phone.price_USD }}</p>
-    <p>Operating System: {{ phone.os }}</p>
-    <p>Screen Size (inches): {{ phone.inches }}</p>
-    <p>Resolution: {{ phone.resolution }}</p>
-    <p>Battery: {{ phone.battery }} mAh</p>
-    <p>Battery Type: {{ phone.battery_type }}</p>
-    <p>RAM: {{ phone.ram_GB }} GB</p>
-    <p>Announcement Date: {{ phone.announcement_date }}</p>
-    <p>Weight: {{ phone.weight_g }} g</p>
-    <p>Storage: {{ phone.storage_GB }} GB</p>
-    <p>Video Capabilities:</p>
-    <ul>
-        <li>720p: {% if phone.video_720p %}Supported{% else %}Not Supported{% endif %}</li>
-        <li>1080p: {% if phone.video_1080p %}Supported{% else %}Not Supported{% endif %}</li>
-        <li>4K: {% if phone.video_4K %}Supported{% else %}Not Supported{% endif %}</li>
-        <li>8K: {% if phone.video_8K %}Supported{% else %}Not Supported{% endif %}</li>
-        <li>30fps: {% if phone.video_30fps %}Supported{% else %}Not Supported{% endif %}</li>
-        <li>60fps: {% if phone.video_60fps %}Supported{% else %}Not Supported{% endif %}</li>
-        <li>120fps: {% if phone.video_120fps %}Supported{% else %}Not Supported{% endif %}</li>
-        <li>240fps: {% if phone.video_240fps %}Supported{% else %}Not Supported{% endif %}</li>
-        <li>480fps: {% if phone.video_480fps %}Supported{% else %}Not Supported{% endif %}</li>
-        <li>960fps: {% if phone.video_960fps %}Supported{% else %}Not Supported{% endif %}</li>
-    </ul>
+    <div class="container">
+        <div class="header">
+            <h1>{{ phone.phone_name }}</h1>
+        </div>
+
+        <div class="content">
+            <!-- Ajout de l'image -->
+            <img src="{{ phone.image }}" alt="{{ phone.phone_name }}" class="phone-image">
+
+            <div class="details">
+                <p>Rating: {{ phone.rating }}</p>
+                <p>Total Reviews: {{ phone.totalReviews }}</p>
+
+                <!-- Prix avec bouton de modification -->
+                <p>
+                    Price: {% if phone.new_price %} {{ phone.new_price }} {% else %} {{ phone.price_USD }} {% endif %}
+                    <button class="edit-button" onclick="toggleEditForm('price')">Modifier</button>
+                </p>
+                <form method="post" action="{% url 'update_phone_detail' %}" class="edit-form" id="edit-form-price" style="display: none;">
+                    {% csrf_token %}
+                    <input type="hidden" name="phone_id" value="{{ phone.identifiant }}">
+                    <label for="new-price">Nouvelle valeur :</label>
+                    <input type="text" name="new_price" id="new-price" required>
+                    <button type="submit" onclick="applyUpdate()">Enregistrer</button>
+                </form>
+
+                <!-- Autres caractéristiques du téléphone -->
+                <p>Operating System: {{ phone.os }}</p>
+                <p>Screen Size (inches): {{ phone.inches }}</p>
+                <p>Resolution: {{ phone.resolution }}</p>
+                <p>Battery: {{ phone.battery }} mAh</p>
+                <p>Battery Type: {{ phone.battery_type }}</p>
+                <p>RAM: {{ phone.ram_GB }} GB</p>
+                <p>Announcement Date: {{ phone.announcement_date }}</p>
+                <p>Weight: {{ phone.weight_g }} g</p>
+                <p>Storage: {{ phone.storage_GB }} GB</p>
+                <p>Video Capabilities:</p>
+                <ul>
+                    <!-- ... (Autres caractéristiques vidéo) ... -->
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Fonction pour basculer l'affichage du formulaire de modification
+        function toggleEditForm(feature) {
+            var form = document.getElementById('edit-form-' + feature);
+            form.style.display = (form.style.display === 'none' || form.style.display === '') ? 'block' : 'none';
+        }
+
+        // Fonction pour appliquer la mise à jour avant de soumettre le formulaire
+        function applyUpdate() {
+            // Ajoutez ici d'autres actions si nécessaire avant de soumettre le formulaire
+            // ...
+
+            // Soumettez le formulaire
+            document.getElementById('edit-form-price').submit();
+        }
+    </script>
 </body>
 </html>
