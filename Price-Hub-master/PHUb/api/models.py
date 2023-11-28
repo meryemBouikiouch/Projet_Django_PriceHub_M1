@@ -18,18 +18,21 @@ class Phone(models.Model):
     announcement_date = models.DateField()
     weight_g = models.IntegerField()
     storage_GB = models.IntegerField()
-    video_720p = models.BooleanField()
-    video_1080p = models.BooleanField()
-    video_4K = models.BooleanField()
-    video_8K = models.BooleanField()
-    video_30fps = models.BooleanField()
-    video_60fps = models.BooleanField()
-    video_120fps = models.BooleanField()
-    video_240fps = models.BooleanField()
-    video_480fps = models.BooleanField()
-    video_960fps = models.BooleanField()
+    
+    # Modifications pour autoriser NULL pour les champs vidéo
+   # Modifications pour autoriser NULL pour les champs vidéo
+    video_720p = models.BooleanField(null=True)
+    video_1080p = models.BooleanField(null=True)
+    video_4K = models.BooleanField(null=True)
+    video_8K = models.BooleanField(null=True)
+    video_30fps = models.BooleanField(null=True)
+    video_60fps = models.BooleanField(null=True)
+    video_120fps = models.BooleanField(null=True)
+    video_240fps = models.BooleanField(null=True)
+    video_480fps = models.BooleanField(null=True)
+    video_960fps = models.BooleanField(null=True)
+
     price_USD = models.DecimalField(max_digits=10, decimal_places=2)
 
     def __str__(self):
         return self.phone_name
-# Create your models here.
