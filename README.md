@@ -16,6 +16,3 @@ GitHub release: V0.2 - Ce badge indique la release V0.2 du projet sur GitHub.
 [![Django CI](https://github.com/meryemBouikiouch/Projet_Django_PriceHub_M1/actions/workflows/django.yml/badge.svg)](https://github.com/meryemBouikiouch/Projet_Django_PriceHub_M1/actions/workflows/django.yml)
 Django CI: Ce badge indique l'état de la CI (Intégration Continue) pour le framework Django.
 
-https://img.shields.io/codecov/c/github/meryemBouikiouch/Projet_Django_PriceHub_M1
-
-Coverage : Couverture des tests
