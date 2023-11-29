@@ -27,7 +27,7 @@ Ce repository contient le code source du projet Django PriceHub M1.
 
 ## Description
 
-PriceHub est une plateforme web basée sur Django qui permet de comparer les prix des produits dans différents magasins en ligne. Ce projet a été développé dans le cadre du cours de DevOps en M1 MIAGE a Nanterre Université.
+PriceHub est une plateforme web basée sur Django qui permet de comparer les prix des produits numériques dans différents magasins en ligne. Ce projet a été développé dans le cadre du cours de DevOps en M1 MIAGE a Nanterre Université.
 
 ## Installation
 
@@ -51,6 +51,27 @@ Appliquer les migrations : python manage.py migrate
 Lancer le serveur de développement: python manage.py runserver
 
 Ce projet est sous licence MIT
+
+##### Fonctionnalités principales ::::
+
+# Recherche et sélection de téléphones
+
+L'application permet aux utilisateurs de rechercher des téléphones selon leurs préférences. 
+Les utilisateurs ont la possibilité d'effectuer une recherche simple ou avancée. 
+La recherche avancée leur permet de filtrer les résultats en fonction de critères tels que le prix, la capacité de la RAM et d'autres spécifications pertinentes. 
+Cela permet aux utilisateurs de trouver le téléphone qui correspond le mieux à leurs besoins.
+
+# Comparaison des prix lors des déplacements
+
+Les utilisateurs peuvent saisir les prix des téléphones qu'ils trouvent dans différents magasins. 
+Grâce au tableau de bord de l'application, ils peuvent comparer les différences de prix entre les différents endroits visités. 
+Cette fonctionnalité aide les utilisateurs à prendre des décisions éclairées en se basant sur les prix disponibles et à se diriger vers l'endroit enregistré sur leur tableau de bord pour effectuer leur achat.
+
+# À venir
+
+Nous travaillons actuellement sur deux autres fonctionnalités pour améliorer encore l'expérience des utilisateurs. Restez à l'écoute pour les prochaines mises à jour !
+
+
 
 
 
