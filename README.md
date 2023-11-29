@@ -17,3 +17,5 @@ GitHub release: V0.2 - Ce badge indique la release V0.2 du projet sur GitHub.
 Django CI: Ce badge indique l'état de la CI (Intégration Continue) pour le framework Django.
 
 ![Codacy coverage](https://img.shields.io/codacy/coverage/:Projet_Django_PriceHub_M1)
+
+![Scrutinizer code quality (GitHub/Bitbucket)](https://img.shields.io/scrutinizer/quality/g/:meryemBouikiouch/:Projet_Django_PriceHub_M1/:master)
