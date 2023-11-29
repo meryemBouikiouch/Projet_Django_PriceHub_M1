@@ -31,7 +31,9 @@ PriceHub est une plateforme web basée sur Django qui permet de comparer les pri
 
 ## Installation
 
-Assurez-vous d'avoir Python installé. Clonez ce repository :
+Assurez-vous d'avoir Python installé. 
+
+Clonez ce repository :
 
 git clone https://github.com/meryemBouikiouch/Projet_Django_PriceHub_M1.git
 
@@ -52,22 +54,22 @@ Lancer le serveur de développement: python manage.py runserver
 
 Ce projet est sous licence MIT
 
-##### Fonctionnalités principales ::::
+# Fonctionnalités principales ::::
 
-# Recherche et sélection de téléphones
+### Recherche et sélection de téléphones
 
 L'application permet aux utilisateurs de rechercher des téléphones selon leurs préférences. 
 Les utilisateurs ont la possibilité d'effectuer une recherche simple ou avancée. 
 La recherche avancée leur permet de filtrer les résultats en fonction de critères tels que le prix, la capacité de la RAM et d'autres spécifications pertinentes. 
 Cela permet aux utilisateurs de trouver le téléphone qui correspond le mieux à leurs besoins.
 
-# Comparaison des prix lors des déplacements
+### Comparaison des prix lors des déplacements
 
 Les utilisateurs peuvent saisir les prix des téléphones qu'ils trouvent dans différents magasins. 
 Grâce au tableau de bord de l'application, ils peuvent comparer les différences de prix entre les différents endroits visités. 
 Cette fonctionnalité aide les utilisateurs à prendre des décisions éclairées en se basant sur les prix disponibles et à se diriger vers l'endroit enregistré sur leur tableau de bord pour effectuer leur achat.
 
-# À venir
+### À venir
 
 Nous travaillons actuellement sur deux autres fonctionnalités pour améliorer encore l'expérience des utilisateurs. Restez à l'écoute pour les prochaines mises à jour !
 
