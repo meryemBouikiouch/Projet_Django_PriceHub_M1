@@ -69,9 +69,24 @@ Les utilisateurs peuvent saisir les prix des téléphones qu'ils trouvent dans d
 Grâce au tableau de bord de l'application, ils peuvent comparer les différences de prix entre les différents endroits visités. 
 Cette fonctionnalité aide les utilisateurs à prendre des décisions éclairées en se basant sur les prix disponibles et à se diriger vers l'endroit enregistré sur leur tableau de bord pour effectuer leur achat.
 
-### À venir
+### Ajout d'une fonctionnalité de Liste de souhaits :
 
-Nous travaillons actuellement sur deux autres fonctionnalités pour améliorer encore l'expérience des utilisateurs. Restez à l'écoute pour les prochaines mises à jour !
+Intégrer la possibilité pour les utilisateurs de créer une liste de souhaits d'achat afin de se rappeler des articles qu'ils souhaitent acheter lors de leurs sorties.
+Élargir les catégories au-delà des téléphones, inclure d'autres types de produits.
+Implémenter une fonction de clôture des souhaits, permettant aux utilisateurs de marquer un souhait comme accompli lorsqu'ils ont effectivement effectué l'achat.
+
+### Fonctionnalité d'ajout/modification de téléphones :
+
+Autoriser les utilisateurs à ajouter manuellement un téléphone s'il n'est pas répertorié dans la base de données.
+Permettre la modification du prix d'un téléphone, en particulier lorsque l'utilisateur constate des changements de prix lors de ses visites en magasin.
+Mettre en place un système pour actualiser la base de données des téléphones en fonction des modifications apportées par les utilisateurs.
+
+### Création de groupes et collaboration :
+
+Offrir la possibilité aux utilisateurs de créer des groupes avec d'autres personnes partageant le même souhait d'achat.
+Faciliter la communication au sein du groupe pour discuter des stratégies de recherche de prix et de l'optimisation des offres.
+Autoriser chaque membre à noter et à ajouter des lieux visités dans son historique, avec le souhait d'achat et le prix trouvé.
+Faciliter l'accès à l'historique des membres du groupe pour permettre une comparaison et une recherche collaborative des meilleures offres.
 
 
 
