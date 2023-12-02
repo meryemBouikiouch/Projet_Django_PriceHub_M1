@@ -1,4 +1,3 @@
-
 from django import views
 from django.urls import  path
 from .views import *
@@ -21,4 +20,10 @@ urlpatterns = [
     path('supprimer_souhaits/<int:souhaits_id>/', views.supprimer_souhaits, name='supprimer_souhaits'),
     path('changer_statut/<int:souhait_id>/', changer_statut, name='changer_statut'),
     path('update_phone_detail/', update_phone_detail, name='update_phone_detail'),
+    path('groupe/', groupe_view, name='groupe'),
+    path('confirmer_creation_groupe/', confirmer_creation_groupe, name='confirmer_creation_groupe'),
+    path('mesgroupes/<int:groupe_id>/', views.mesgroupes, name='mesgroupes'),
+    path('afficher_historique/', afficher_historique, name='afficher_historique'),
+    path('mesgroupes/', mesgroupes, name='mesgroupes'),
+    path('mes_groupes/', mes_groupes, name='mes_groupes'),
 ]
