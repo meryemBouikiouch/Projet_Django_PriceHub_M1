@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/stylestb.css' %}" />
+    <!-- Ajoutez d'autres balises meta ou liens vers des fichiers CSS si nécessaire -->
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        h1 {
+            text-align: center;
+            padding: 20px 0;
+            color: #3498db;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        li {
+            background-color: #fff;
+            margin: 10px;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        a {
+            text-decoration: none;
+            color: #2c3e50;
+        }
+
+        a:hover {
+            color: #3498db;
+        }
+
+        p {
+            text-align: center;
+            margin-top: 20px;
+            color: #7f8c8d;
+        }
+
+        @media only screen and (max-width: 600px) {
+            li {
+                margin: 10px 0;
+            }
+        }
+    </style>
+    <title>Mes Groupes</title>
+</head>
+<body>
+
+<h1>Mes Groupes</h1>
+
+{% if groupes %}
+    <ul>
+        {% for groupe in groupes %}
+            <li>
+                <strong><a href="{% url 'mesgroupes' groupe_id=groupe.id %}">{{ groupe.nom }}</a></strong><br>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Aucun groupe trouvé.</p>
+{% endif %}
+
+</body>
+</html>
