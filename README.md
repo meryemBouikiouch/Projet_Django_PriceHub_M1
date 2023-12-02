@@ -63,11 +63,8 @@ Les utilisateurs ont la possibilité d'effectuer une recherche simple ou avancé
 La recherche avancée leur permet de filtrer les résultats en fonction de critères tels que le prix, la capacité de la RAM et d'autres spécifications pertinentes. 
 Cela permet aux utilisateurs de trouver le téléphone qui correspond le mieux à leurs besoins.
 
-### Comparaison des prix lors des déplacements
-
-Les utilisateurs peuvent saisir les prix des téléphones qu'ils trouvent dans différents magasins. 
-Grâce au tableau de bord de l'application, ils peuvent comparer les différences de prix entre les différents endroits visités. 
-Cette fonctionnalité aide les utilisateurs à prendre des décisions éclairées en se basant sur les prix disponibles et à se diriger vers l'endroit enregistré sur leur tableau de bord pour effectuer leur achat.
+### Recherche d'offres en se déplaçant dans les magasins de téléphones :
+L'utilisateur se déplace physiquement dans différents endroits pour trouver le téléphone qu'il souhaite acheter. Pendant ses déplacements, il collecte des informations sur les prix de divers téléphones dans les magasins qu'il visite. En utilisant l'application, il peut facilement entrer ces données dans son tableau de bord dédié. Cette approche proactive permet à l'utilisateur de comparer aisément les différences de prix entre les différents endroits visités. Ainsi, il peut prendre des décisions plus éclairées sur l'achat en se basant sur les informations actualisées en temps réel. En ayant l'endroit déjà enregistré sur son tableau de bord, le processus d'achat est simplifié et optimisé pour l'utilisateur.
 
 ### Ajout d'une fonctionnalité de Liste de souhaits :
 
