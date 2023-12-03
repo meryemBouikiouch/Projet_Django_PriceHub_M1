@@ -86,6 +86,8 @@ Autoriser chaque membre à noter et à ajouter des lieux visités dans son histo
 Faciliter l'accès à l'historique des membres du groupe pour permettre une comparaison et une recherche collaborative des meilleures offres.
 
 
+### Création d'un shoppingmeeting ( groupe pour sorties ) : 
+l'utilisateur peut créé un groupe de personnes qui ont le meme souhait pour plannifier une sortie entre eux pour visiter un lieux ou se trouve le souhait commun et faire du shopping ensemble pour s'entraider dans le choix et trouver la meilleure offre dans le magasin et 
 
 
 
