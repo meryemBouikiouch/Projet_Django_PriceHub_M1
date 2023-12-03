@@ -399,8 +399,7 @@ def mes_groupes(request):
     else:
         # Rediriger vers la page de connexion si l'utilisateur n'est pas connecté
         return redirect('nom_de_votre_page_de_connexion')
-    MesSouhaits = Souhaits.objects.all()
-    return render(request, 'ShoppingMeet.html', {'MesSouhaits': MesSouhaits})
+    
 
 
 def planifier_reunion(request):
