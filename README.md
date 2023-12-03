@@ -85,11 +85,9 @@ Faciliter la communication au sein du groupe pour discuter des stratégies de re
 Autoriser chaque membre à noter et à ajouter des lieux visités dans son historique, avec le souhait d'achat et le prix trouvé.
 Faciliter l'accès à l'historique des membres du groupe pour permettre une comparaison et une recherche collaborative des meilleures offres.
 
+### Organisation de Shopping Meetings (Groupes de Sorties)
 
-### Création d'un shoppingmeeting ( groupe pour sorties ) : 
-l'utilisateur peut créé un groupe de personnes qui ont le meme souhait pour plannifier une sortie entre eux pour visiter un lieux ou se trouve le souhait commun et faire du shopping ensemble pour s'entraider dans le choix et trouver la meilleure offre dans le magasin et 
-
-
+Les utilisateurs ont désormais la possibilité de créer des Shopping Meetings, des groupes réunissant des individus partageant un même désir. Ces groupes permettent de planifier des sorties communes afin de visiter des lieux correspondant à leurs souhaits, tout en effectuant des achats ensemble. L'objectif est de favoriser l'entraide dans les choix d'achat et de dénicher les meilleures offres disponibles en magasin.
 
 
 
