@@ -25,6 +25,9 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
+              <a class="nav-link text-white no-modal" href="##" id="shoppingMeetingLink">shopping meeting</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link text-white no-modal" href="##" id="souhaitsLink">Mes souhaits</a>
             </li>
             <li class="nav-item">
@@ -187,6 +190,14 @@
         }
         // Ajout d'un écouteur pour le lien "souhaits"
         var souhaitsLink = document.getElementById('souhaitsLink')
+        if (souhaitsLink) {
+          souhaitsLink.addEventListener('click', function (event) {
+            event.preventDefault()
+            openLoginModal()
+          })
+        }
+        // Ajout d'un écouteur pour le lien "shoppingMeeting"
+        var souhaitsLink = document.getElementById('shoppingMeetingLink')
         if (souhaitsLink) {
           souhaitsLink.addEventListener('click', function (event) {
             event.preventDefault()
