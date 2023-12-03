@@ -338,7 +338,7 @@ def confirmer_creation_groupe(request):
 
             return JsonResponse({'success': False})
 def shopping_meet(request):
-<<<<<<< HEAD
+
     return render(request, 'ShoppingMeet.html', {})
             # Créer un nouveau groupe
     groupe = Groupe.objects.create(
@@ -399,10 +399,8 @@ def mes_groupes(request):
     else:
         # Rediriger vers la page de connexion si l'utilisateur n'est pas connecté
         return redirect('nom_de_votre_page_de_connexion')
-=======
     MesSouhaits = Souhaits.objects.all()
     return render(request, 'ShoppingMeet.html', {'MesSouhaits': MesSouhaits})
->>>>>>> meryem
 
 
 def planifier_reunion(request):
