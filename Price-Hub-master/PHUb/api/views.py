@@ -335,13 +335,8 @@ def confirmer_creation_groupe(request):
 
             return render(request, 'mesgroupes.html', {'groupe': existing_group, 'category': category, 'brand': brand, 'name': name, 'personnes_du_groupe': personnes_du_groupe})
         else:
-
-            return JsonResponse({'success': False})
-def shopping_meet(request):
-
-    return render(request, 'ShoppingMeet.html', {})
             # Créer un nouveau groupe
-    groupe = Groupe.objects.create(
+            groupe = Groupe.objects.create(
                 user=user,
                 nom=f"Groupe {category}",
                 souhait_commun=f"{category} - {brand} - {name}",
@@ -351,12 +346,15 @@ def shopping_meet(request):
             )
 
             # Ajouter les personnes sélectionnées au nouveau groupe
-    personnes_du_groupe = Souhaits.objects.filter(id__in=personnes_selectionnees_ids)
-    groupe.personnes.add(*personnes_du_groupe)
+            personnes_du_groupe = Souhaits.objects.filter(id__in=personnes_selectionnees_ids)
+            groupe.personnes.add(*personnes_du_groupe)
 
-    return render(request, 'mesgroupes.html', {'groupe': groupe, 'category': category, 'brand': brand, 'name': name, 'personnes_du_groupe': personnes_du_groupe})
+            return render(request, 'mesgroupes.html', {'groupe': groupe, 'category': category, 'brand': brand, 'name': name, 'personnes_du_groupe': personnes_du_groupe})
 
-    return redirect('mes_groupes')
+    return JsonResponse({'success': False})
+def shopping_meet(request):
+
+    return render(request, 'ShoppingMeet.html', {})
 def mesgroupes(request, groupe_id):
     groupe = get_object_or_404(Groupe, id=groupe_id)
     groupes_uniques = set(Groupe.objects.all())  # Utilisation d'un ensemble pour des groupes uniques
