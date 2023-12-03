@@ -35,6 +35,7 @@ class Phone(models.Model):
         return self.phone_name
 # Create your models here.
 class HistoriqueVisite(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     category= models.CharField(max_length=100, null=True, blank=True)
     brand = models.CharField(max_length=100, null=True, blank=True)
     name = models.CharField(max_length=255, null=False, blank=False)
@@ -45,8 +46,6 @@ class HistoriqueVisite(models.Model):
 
     def __str__(self):
         return f"{self.category} -{self.brand} - {self.name} - {self.store_name} - {self.location} - {self.prix}- {self.date_of_visit}"
-    from django.db import models
-from django.contrib.auth.models import User
 
 class Souhaits(models.Model):
     STATUS_CHOICES = [
@@ -64,3 +63,23 @@ class Souhaits(models.Model):
         return f"{self.user.username} - {self.category} - {self.brand} - {self.name} - {self.phone_number} - {self.status}"
 
 
+class Groupe(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    nom = models.CharField(max_length=255)
+    souhait_commun = models.CharField(max_length=255)
+    category = models.CharField(max_length=255, null=True, blank=True)
+    brand = models.CharField(max_length=255, null=True, blank=True)
+    name = models.CharField(max_length=255, null=True, blank=True)
+    personnes = models.ManyToManyField('Souhaits', related_name='groupes_groupe')
+
+    def __str__(self):
+        return self.nom
+class Personne(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    phone_number = models.CharField(max_length=15)
+    status = models.CharField(max_length=100)
+    groupe = models.ForeignKey(Groupe, on_delete=models.SET_NULL, null=True, blank=True, related_name='personnes_personne')
+    nom = models.CharField(max_length=255, blank=True, null=True)
+
+    def __str__(self):
+        return self.user.username
