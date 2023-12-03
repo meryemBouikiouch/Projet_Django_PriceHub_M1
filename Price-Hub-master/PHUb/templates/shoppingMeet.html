@@ -1,11 +1,224 @@
+{% load static %}
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shopping meeting</title>
-</head>
-<body>
-    <p>meeting</p>
-    <br>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Font Awesome -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- MDB -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.min.css' %}">
+    <title>Shopping_Meet</title>
+  </head>
+  <body>
+    <section class="vh-100" style="background-color: #eee">
+      <div class="container h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-lg-12 col-xl-11">
+            <div class="card text-black" style="border-radius: 25px">
+              <div class="card-body p-md-5">
+                <div class="row justify-content-center">
+                  <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+                    <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">
+                     planifier un meeting
+                    </p>
+                    <form id="MeetForm" class="mx-1 mx-md-4" action="{% url 'shopping_meet' %}" method="POST">
+                      {% csrf_token %}
+                      <div class="d-flex flex-row align-items-center mb-4">
+                        <i class="fas fa-archive fa-lg me-3 fa-fw"></i>
+                        <div class="form-outline flex-fill mb-0">
+                            <select class="form-select" name="category" id="category" required>
+                                <option value="" disabled selected hidden>Sélectionner une catégorie</option>
+                                <option value="other">Autre</option>
+                                <option value="telephone">Téléphone</option>
+                                <option value="tablette">Tablette</option>
+                                <option value="ordinateur">Ordinateur</option>
+                                <option value="accessoire_telephone">Accessoire téléphone</option>
+                                <option value="accessoire_tablette">Accessoire tablette</option>
+                                <option value="accessoire_ordinateur">Accessoire ordinateur</option>
+                                
+                            </select>
+                            <input type="text" class="form-control mt-2" id="other_category" name="other_category" placeholder="Entrez une autre catégorie" style="display:none;">
+                        </div>
+                    </div>
+                    <script>
+                      document.getElementById("category").addEventListener("change", function() {
+                          var otherCategoryInput = document.getElementById("other_category");
+                          otherCategoryInput.style.display = (this.value === "other") ? "block" : "none";
+                      });
+                  </script>
+                      
+                      <div class="d-flex flex-row align-items-center mb-4">
+                        <i class="fas fa-shopping-cart fa-lg me-3 fa-fw"></i>
+                        <div class="form-outline flex-fill mb-0">
+                          <input
+                            type="text"
+                            id="form3Example3c"
+                            class="form-control"
+                            name="Nom du magasin"
+                            required
+                          />
+                          <label class="form-label" for="form3Example3c"
+                            >magasin à visiter </label
+                          >
+                        </div>
+                      </div>
+                       
+                      <div class="d-flex flex-row align-items-center mb-4">
+                        <i class="fas fa-location-arrow fa-lg me-3 fa-fw"></i>
+                        <div class="form-outline flex-fill mb-0">
+                          <input
+                            type="text"
+                            id="form3Example4c"
+                            class="form-control"
+                            name="Lieu"
+                            required
+                          />
+                          <label class="form-label" for="form3Example4c"
+                            >Lieu</label
+                          >
+                        </div>
+                      </div>
+                      <div class="d-flex flex-row align-items-center mb-4">
+                        <i class="far fa-calendar-alt fa-lg me-3 fa-fw"></i>
+                        <div class="form-outline flex-fill mb-0">
+                            <input
+                                type="date"
+                                id="form3ExampleDate"
+                                class="form-control"
+                                name="date_of_visit"
+                                required
+                            />
+                            <label class="form-label" for="form3ExampleDate">Date de réunion</label>
+                        </div>
+                      </div>
+                      <div class="d-flex flex-row align-items-center mb-4">
+                        <i class="fas fa-user-plus fa-lg me-3 fa-fw"></i>
+                        <div class="form-outline flex-fill mb-0">
+                            <select class="form-select" name="participants[]" id="participants" multiple>
+                                <option value="" >les personnes qui souhaitent acheter ce catégorie</option>
+                                {% for user in matching_users %}
+                                    <option value="{{ user.user.id }}">{{ user.user.username }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <script>
+                        document.getElementById("category").addEventListener("change", function() {
+                            var categoryId = this.value;
+                            var participantsSelect = document.getElementById("participants");
+                        
+                            // Supprimer toutes les options actuelles
+                            participantsSelect.innerHTML = '';
+                        
+                            // Requête AJAX pour obtenir les souhaits des participants
+                            fetch(`/get_participants/?category=${categoryId}`)
+                                .then(response => response.json())
+                                .then(data => {
+                                    // Ajouter chaque participant comme une nouvelle option
+                                    data.forEach(participant => {
+                                        var option = document.createElement("option");
+                                        option.value = participant.user__id;  // Utilisez le bon nom de champ
+                                        option.text = participant.user__username;  // Utilisez le bon nom de champ
+                                        participantsSelect.appendChild(option);
+                                    });
+                                })
+                                .catch(error => {
+                                    console.error('Erreur lors de la récupération des participants:', error);
+                                });
+                        });
+                        
+                    </script>
+                    
+                      <div
+                        class="d-flex justify-content-center mx-4 mb-3 mb-lg-4"
+                      >
+                        <button style="margin-right: 10px;" type="submit" class="btn btn-primary btn-lg">
+                          Enregister
+                        </button>
+                        <a href={% url 'afficherMeet' %} class="btn btn-primary" id="afficherMeetBtn">Afficher mes réunion</a>
+                        <div>
+
+                        </div>
+                
+                      </div>
+                    </form>
+                    <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                            Votre planning a été enregistrés avec succès!
+                            </div>
+                            <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">OK</button>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    <script>
+                        document.getElementById("MeetForm").addEventListener("submit", function (event) {
+                            event.preventDefault();
+                    
+                            var formData = new FormData(this);
+                    
+                            // Envoyer une requête Ajax à la vue Django
+                            fetch('/planifier_reunion/', {
+                                method: 'POST',
+                                body: formData,
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                console.log('Réponse du serveur:', data);  // Ajout de cette ligne
+                                // Affichez le modal de confirmation
+                                var confirmationModal = new bootstrap.Modal(document.getElementById("confirmationModal"));
+                                confirmationModal.show();
+                            })
+                            .catch(error => console.error('Erreur:', error));
+                        });
+    
+                      
+                    </script>
+                  </div>
+                  <div
+                    class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2"
+                  >
+                    <img
+                      src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
+                      class="img-fluid"
+                      alt="Sample image"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- MDB -->
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.js"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/js/bootstrap.min.js"></script>
+
+  </body>
 </html>

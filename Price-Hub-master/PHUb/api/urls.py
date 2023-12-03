@@ -3,6 +3,7 @@ from django.urls import  path
 from .views import *
 from . import views
 
+
 urlpatterns = [
     path('',index,name='index'),
     path('log_in/',log_in,name='log_in'),
@@ -21,10 +22,19 @@ urlpatterns = [
     path('changer_statut/<int:souhait_id>/', changer_statut, name='changer_statut'),
     path('shopping_meet/', shopping_meet, name='shopping_meet'),
     path('update_phone_detail/', update_phone_detail, name='update_phone_detail'),
+<<<<<<< HEAD
     path('groupe/', groupe_view, name='groupe'),
     path('confirmer_creation_groupe/', confirmer_creation_groupe, name='confirmer_creation_groupe'),
     path('mesgroupes/<int:groupe_id>/', views.mesgroupes, name='mesgroupes'),
     path('afficher_historique/', afficher_historique, name='afficher_historique'),
     path('mesgroupes/', mesgroupes, name='mesgroupes'),
     path('mes_groupes/', mes_groupes, name='mes_groupes'),
+=======
+    path('afficherMeet/',afficherMeet,name='afficherMeet'),
+    path('planifier_reunion/',planifier_reunion,name='planifier_reunion'),
+    path('get_participants/', get_participants, name='get_participants'),
+    path('supprimer_Meet/<int:meeting_id>/', supprimer_Meet, name='supprimer_Meet'),
+
+
+>>>>>>> meryem
 ]
