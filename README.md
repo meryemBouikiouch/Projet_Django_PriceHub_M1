@@ -18,6 +18,9 @@ Django CI: Ce badge indique l'état de la CI (Intégration Continue) pour le fra
 
 ![Codacy coverage](https://img.shields.io/codacy/coverage/:Projet_Django_PriceHub_M1)
 
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/meryemBouikiouch/Projet_Django_PriceHub_M1/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/meryemBouikiouch/Projet_Django_PriceHub_M1/?branch=master)
+
+
 [![Build Status](https://scrutinizer-ci.com/g/meryemBouikiouch/Projet_Django_PriceHub_M1/badges/build.png?b=master)](https://scrutinizer-ci.com/g/meryemBouikiouch/Projet_Django_PriceHub_M1/build-status/master)
 
 [![Code Intelligence Status](https://scrutinizer-ci.com/g/meryemBouikiouch/Projet_Django_PriceHub_M1/badges/code-intelligence.svg?b=master)](https://scrutinizer-ci.com/code-intelligence)
