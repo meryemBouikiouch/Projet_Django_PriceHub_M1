@@ -312,6 +312,7 @@ def groupe_view(request):
         return render(request, 'groupe.html', {'categories': categories, 'marques': marques, 'noms': noms, 'personnes_du_groupe': personnes_du_groupe, 'category': category, 'brand': brand, 'name': name})
     else:
         return render(request, 'groupe.html', {'categories': categories, 'marques': marques, 'noms': noms})
+    
 
 def confirmer_creation_groupe(request):
     if request.method == 'POST':
@@ -352,9 +353,13 @@ def confirmer_creation_groupe(request):
             return render(request, 'mesgroupes.html', {'groupe': groupe, 'category': category, 'brand': brand, 'name': name, 'personnes_du_groupe': personnes_du_groupe})
 
     return JsonResponse({'success': False})
+
+
 def shopping_meet(request):
 
     return render(request, 'ShoppingMeet.html', {})
+
+
 def mesgroupes(request, groupe_id):
     groupe = get_object_or_404(Groupe, id=groupe_id)
     groupes_uniques = set(Groupe.objects.all())  # Utilisation d'un ensemble pour des groupes uniques
