@@ -27,7 +27,4 @@ jobs:
     - name: Set up Codacy Coverage Token
       run: echo "export CODACY_COVERAGE_TOKEN=\${{ secrets.CODACY_COVERAGE_TOKEN }}" >> $GITHUB_ENV
 
-    - name: Run Codacy Coverage Reporter
-      run: |
-        CODACY_COVERAGE_TOKEN=$CODACY_COVERAGE_TOKEN bash <(curl -Ls https://coverage.codacy.com/get.sh)
-
+    
