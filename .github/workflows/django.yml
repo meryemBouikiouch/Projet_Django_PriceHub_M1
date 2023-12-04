@@ -8,9 +8,7 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
@@ -18,7 +16,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: '3.x' # Spécifiez la version de Python que vous utilisez
+        python-version: '3.x'
 
     - name: Install dependencies with Pipenv
       run: |
@@ -26,4 +24,10 @@ jobs:
         pip install pipenv
         pipenv install --dev # ou la commande spécifique pour installer les dépendances avec Pipenv
 
+    - name: Set up Codacy Coverage Token
+      run: echo "export CODACY_COVERAGE_TOKEN=\${{ secrets.CODACY_COVERAGE_TOKEN }}" >> $GITHUB_ENV
+
+    - name: Run Codacy Coverage Reporter
+      run: |
+        CODACY_COVERAGE_TOKEN=$CODACY_COVERAGE_TOKEN bash <(curl -Ls https://coverage.codacy.com/get.sh)
 
