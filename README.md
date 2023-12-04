@@ -16,7 +16,7 @@ GitHub release: V0.2 - Ce badge indique la release V0.2 du projet sur GitHub.
 [![Django CI](https://github.com/meryemBouikiouch/Projet_Django_PriceHub_M1/actions/workflows/django.yml/badge.svg)](https://github.com/meryemBouikiouch/Projet_Django_PriceHub_M1/actions/workflows/django.yml)
 Django CI: Ce badge indique l'état de la CI (Intégration Continue) pour le framework Django.
 
-![Codacy coverage](https://img.shields.io/codacy/coverage/:Projet_Django_PriceHub_M1)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/392df07d1f33495fa1261bc10ee4b2df)](https://app.codacy.com/gh/meryemBouikiouch/Projet_Django_PriceHub_M1/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/meryemBouikiouch/Projet_Django_PriceHub_M1/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/meryemBouikiouch/Projet_Django_PriceHub_M1/?branch=master)
 
