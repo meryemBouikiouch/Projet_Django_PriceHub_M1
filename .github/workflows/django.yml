@@ -26,4 +26,4 @@ jobs:
         pip install pipenv
         pipenv install --dev # ou la commande spécifique pour installer les dépendances avec Pipenv
 
-  
+
