@@ -18,8 +18,7 @@ Django CI: Ce badge indique l'état de la CI (Intégration Continue) pour le fra
 
 ![Codacy coverage](https://img.shields.io/codacy/coverage/:Projet_Django_PriceHub_M1)
 
-![Scrutinizer code quality (GitHub/Bitbucket)](https://img.shields.io/scrutinizer/quality/g/:meryemBouikiouch/:Projet_Django_PriceHub_M1/:master)
-
+[![Code Intelligence Status](https://scrutinizer-ci.com/g/meryemBouikiouch/Projet_Django_PriceHub_M1/badges/code-intelligence.svg?b=master)](https://scrutinizer-ci.com/code-intelligence)
 
 # Projet Django PriceHub M1
 
