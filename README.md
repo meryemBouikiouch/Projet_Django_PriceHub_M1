@@ -19,8 +19,8 @@ Django CI: Ce badge indique l'état de la CI (Intégration Continue) pour le fra
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/392df07d1f33495fa1261bc10ee4b2df)](https://app.codacy.com/gh/meryemBouikiouch/Projet_Django_PriceHub_M1/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 
-[![Codacy Coverage](https://app.codacy.com/project/badge/Grade/392df07d1f33495fa1261bc10ee4b2df)](https://app.codacy.com/gh/meryemBouikiouch/Projet_Django_PriceHub_M1/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 
+[![Codacy Coverage](https://app.codacy.com/project/badge/Grade/392df07d1f33495fa1261bc10ee4b2df)](https://app.codacy.com/gh/meryemBouikiouch/Projet_Django_PriceHub_M1/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 
 
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/meryemBouikiouch/Projet_Django_PriceHub_M1/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/meryemBouikiouch/Projet_Django_PriceHub_M1/?branch=master)
