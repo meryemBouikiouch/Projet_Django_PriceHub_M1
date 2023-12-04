@@ -24,7 +24,6 @@ jobs:
         pip install pipenv
         pipenv install --dev # ou la commande spécifique pour installer les dépendances avec Pipenv
 
-    - name: Set up Codacy Coverage Token
-      run: echo "export CODACY_COVERAGE_TOKEN=\${{ secrets.CODACY_COVERAGE_TOKEN }}" >> $GITHUB_ENV
+
 
     
