@@ -4,7 +4,7 @@
 [![Django CI](https://github.com/meryemBouikiouch/Projet_Django_PriceHub_M1/actions/workflows/django.yml/badge.svg)](https://github.com/meryemBouikiouch/Projet_Django_PriceHub_M1/actions/workflows/django.yml)
 
 
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/392df07d1f33495fa1261bc10ee4b2df)](https://app.codacy.com/gh/meryemBouikiouch/Projet_Django_PriceHub_M1/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade) :
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/392df07d1f33495fa1261bc10ee4b2df)](https://app.codacy.com/gh/meryemBouikiouch/Projet_Django_PriceHub_M1/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade) 
 
 
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/meryemBouikiouch/Projet_Django_PriceHub_M1/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/meryemBouikiouch/Projet_Django_PriceHub_M1/?branch=master)
