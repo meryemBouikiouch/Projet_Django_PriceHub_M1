@@ -1,38 +1,15 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-Licence: MIT - Ce badge indique que le projet est sous licence MIT.
-
-[![Django Version](https://img.shields.io/badge/Django-4.2.5-blue)](https://docs.djangoproject.com/en/4.2/)
-Django Version: 4.2.5 - Ce badge indique l'utilisation de Django version 4.2.5 dans le projet.
-
-[![Python Version](https://img.shields.io/badge/Python-3.11.5-blue.svg)](https://www.python.org/downloads/release/python-3115/)
-Python Version: 3.11.5 - Ce badge indique l'utilisation de Python version 3.11.5 dans le projet.
-
-[![SQLite Version](https://img.shields.io/badge/SQLite-3-blue)](https://www.sqlite.org/index.html)
-SQLite Version: 3 - Ce badge indique l'utilisation de SQLite version 3 dans le projet.
-
 [![GitHub release](https://img.shields.io/github/v/release/meryemBouikiouch/Projet_Django_PriceHub_M1.svg)](https://github.com/meryemBouikiouch/Projet_Django_PriceHub_M1/releases/tag/V0.2)
-GitHub release: V0.3 - Ce badge indique la release V0.2 du projet sur GitHub.
 
 [![Django CI](https://github.com/meryemBouikiouch/Projet_Django_PriceHub_M1/actions/workflows/django.yml/badge.svg)](https://github.com/meryemBouikiouch/Projet_Django_PriceHub_M1/actions/workflows/django.yml)
-Django CI: Ce badge indique l'état de la CI (Intégration Continue) pour le framework Django.
 
 
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/392df07d1f33495fa1261bc10ee4b2df)](https://app.codacy.com/gh/meryemBouikiouch/Projet_Django_PriceHub_M1/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade) :  Ce badge représente l'évaluation de la qualité du code pour le projet par Codacy.
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/392df07d1f33495fa1261bc10ee4b2df)](https://app.codacy.com/gh/meryemBouikiouch/Projet_Django_PriceHub_M1/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade) :
 
 
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/meryemBouikiouch/Projet_Django_PriceHub_M1/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/meryemBouikiouch/Projet_Django_PriceHub_M1/?branch=master)
-Ce badge indique la qualité du code du projet évaluée par Scrutinizer.
 
 [![Build Status](https://scrutinizer-ci.com/g/meryemBouikiouch/Projet_Django_PriceHub_M1/badges/build.png?b=master)](https://scrutinizer-ci.com/g/meryemBouikiouch/Projet_Django_PriceHub_M1/build-status/master)
-Ce badge informe sur l'état de la construction (build) actuelle du projet par Scrutinizer.
-[![Code Intelligence Status](https://scrutinizer-ci.com/g/meryemBouikiouch/Projet_Django_PriceHub_M1/badges/code-intelligence.svg?b=master)](https://scrutinizer-ci.com/code-intelligence)
-Ce badge représente le niveau d'intelligence du code du projet évalué par Scrutinizer. 
-
-
-# Projet Django PriceHub M1
-
-Ce repository contient le code source du projet Django PriceHub M1.
-
 ## Description
 
 PriceHub est une plateforme web basée sur Django qui permet de comparer les prix des produits numériques dans différents magasins en ligne. Ce projet a été développé dans le cadre du cours de DevOps en M1 MIAGE a Nanterre Université.
