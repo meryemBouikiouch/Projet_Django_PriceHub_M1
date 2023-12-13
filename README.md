@@ -39,40 +39,37 @@ Lancer le serveur de développement: python manage.py runserver
 
 Ce projet est sous licence MIT
 
-# Fonctionnalités principales ::::
+# Fonctionnalités Principales
 
-### Recherche et sélection de téléphones
+## Recherche et Sélection de Téléphones
 
-L'application permet aux utilisateurs de rechercher des téléphones selon leurs préférences. 
-Les utilisateurs ont la possibilité d'effectuer une recherche simple ou avancée. 
-La recherche avancée leur permet de filtrer les résultats en fonction de critères tels que le prix, la capacité de la RAM et d'autres spécifications pertinentes. 
-Cela permet aux utilisateurs de trouver le téléphone qui correspond le mieux à leurs besoins.
+- **Recherche Simple ou Avancée :** Les utilisateurs peuvent rechercher des téléphones avec des filtres avancés tels que le prix et les spécifications.
 
-### Recherche d'offres en se déplaçant dans les magasins de téléphones :
-L'utilisateur se déplace physiquement dans différents endroits pour trouver le téléphone qu'il souhaite acheter. Pendant ses déplacements, il collecte des informations sur les prix de divers téléphones dans les magasins qu'il visite. En utilisant l'application, il peut facilement entrer ces données dans son tableau de bord dédié. Cette approche proactive permet à l'utilisateur de comparer aisément les différences de prix entre les différents endroits visités. Ainsi, il peut prendre des décisions plus éclairées sur l'achat en se basant sur les informations actualisées en temps réel. En ayant l'endroit déjà enregistré sur son tableau de bord, le processus d'achat est simplifié et optimisé pour l'utilisateur.
+## Recherche d'Offres en Se Déplaçant dans les Magasins de Téléphones
 
-### Ajout d'une fonctionnalité de Liste de souhaits :
+- **Collecte d'Informations en Déplacement :** Utilisateurs enregistrent les prix de téléphones en se déplaçant.
+- **Enregistrement des Données sur l'Application :** Les données sont saisies dans l'application pour comparaison.
 
-Intégrer la possibilité pour les utilisateurs de créer une liste de souhaits d'achat afin de se rappeler des articles qu'ils souhaitent acheter lors de leurs sorties.
-Élargir les catégories au-delà des téléphones, inclure d'autres types de produits.
-Implémenter une fonction de clôture des souhaits, permettant aux utilisateurs de marquer un souhait comme accompli lorsqu'ils ont effectivement effectué l'achat.
+## Ajout d'une Fonctionnalité de Liste de Souhaits
 
-### Fonctionnalité d'ajout/modification de téléphones :
+- **Création de Liste de Souhaits :** Utilisateurs créent des listes pour se rappeler des articles.
+- **Diversification des Catégories :** Inclut différents types de produits pour une liste complète.
+- **Fermeture des Souhaits :** Possibilité de marquer un souhait comme accompli après l'achat.
 
-Autoriser les utilisateurs à ajouter manuellement un téléphone s'il n'est pas répertorié dans la base de données.
-Permettre la modification du prix d'un téléphone, en particulier lorsque l'utilisateur constate des changements de prix lors de ses visites en magasin.
-Mettre en place un système pour actualiser la base de données des téléphones en fonction des modifications apportées par les utilisateurs.
+## Fonctionnalité d'Ajout/Modification de Téléphones
 
-### Création de groupes et collaboration :
+- **Ajout Manuel dans la Base de Données :** Utilisateurs ajoutent des téléphones manquants.
+- **Modification des Prix :** Ils ajustent les prix lors de changements en magasin.
+- **Actualisation de la Base de Données Collaborative :** Les modifications contribuent à une base de données collaborative.
 
-Offrir la possibilité aux utilisateurs de créer des groupes avec d'autres personnes partageant le même souhait d'achat.
-Faciliter la communication au sein du groupe pour discuter des stratégies de recherche de prix et de l'optimisation des offres.
-Autoriser chaque membre à noter et à ajouter des lieux visités dans son historique, avec le souhait d'achat et le prix trouvé.
-Faciliter l'accès à l'historique des membres du groupe pour permettre une comparaison et une recherche collaborative des meilleures offres.
+## Création de Groupes et Collaboration
 
-### Organisation de Shopping Meetings (Groupes de Sorties)
+- **Formation de Groupes :** Utilisateurs créent des groupes pour partager des souhaits d'achat.
+- **Communication Facilitée :** L'application facilite les discussions sur les prix et les offres.
+- **Historique Collaboratif :** Les membres notent les lieux visités et les prix pour des comparaisons collaboratives.
 
-Les utilisateurs ont désormais la possibilité de créer des Shopping Meetings, des groupes réunissant des individus partageant un même désir. Ces groupes permettent de planifier des sorties communes afin de visiter des lieux correspondant à leurs souhaits, tout en effectuant des achats ensemble. L'objectif est de favoriser l'entraide dans les choix d'achat et de dénicher les meilleures offres disponibles en magasin.
+## Organisation de Shopping Meetings (Groupes de Sorties)
 
-
-
+- **Création de Shopping Meetings :** Possibilité de planifier des sorties communes.
+- **Planification de Sorties Communes :** Les groupes visitent des lieux correspondant à leurs souhaits.
+- **Entraide et Découverte des Meilleures Offres :** Favorise l'entraide pour dénicher les meilleures offres.
