@@ -41,7 +41,7 @@ class HistoriqueVisite(models.Model):
     name = models.CharField(max_length=255, null=False, blank=False)
     store_name = models.CharField(max_length=255)
     location = models.CharField(max_length=255)
-    prix = models.DecimalField(max_digits=10, decimal_places=2)
+    prix = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     date_of_visit = models.DateField()
 
     def __str__(self):
@@ -61,6 +61,32 @@ class Souhaits(models.Model):
 
     def __str__(self):
         return f"{self.user.username} - {self.category} - {self.brand} - {self.name} - {self.phone_number} - {self.status}"
+    
+# class Meeting(models.Model):
+#     user = models.ForeignKey(User, on_delete=models.CASCADE)
+#     category = models.CharField(max_length=255)
+#     store_name = models.CharField(max_length=255)  # Nom du magasin
+#     location = models.CharField(max_length=255)  # Lieu
+#     date_of_meeting = models.DateField()
+#     participants = models.ManyToManyField(Souhaits, related_name='meeting_participants', blank=True)
+
+#     def __str__(self):
+#         participant_names = ", ".join(self.participants.values_list('user__username', flat=True).distinct())
+#         return f"{self.user.username} - {self.category} - {self.store_name} - {self.location} - {self.date_of_meeting} - Participants: {participant_names}"
+
+class Meeting(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    category = models.CharField(max_length=255)
+    store_name = models.CharField(max_length=255)
+    location = models.CharField(max_length=255)
+    date_of_meeting = models.DateField()
+    participants = models.ManyToManyField(Souhaits, related_name='meeting_participants', blank=True)
+
+    def get_participant_names(self):
+        return ", ".join(self.participants.values_list('user__username', flat=True).distinct())
+
+    def __str__(self):
+        return f"{self.user.username} - {self.category} - {self.store_name} - {self.location} - {self.date_of_meeting} - Participants: {self.get_participant_names()}"
 
 
 class Groupe(models.Model):

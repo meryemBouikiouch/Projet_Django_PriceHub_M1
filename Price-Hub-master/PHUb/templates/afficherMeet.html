@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/stylestb.css' %}" />
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/styles.min.css' %}" />
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+
+    <title>Afficher les Meetingshop</title>
+  </head>
+  <body>
+    <h1>Vos réunion de shopping</h1>
+
+    {% for m in Meet %}
+      <div class="visite-container">
+        <div class="visite-info">
+          <div class="visite-header">
+            <p>{{ m.date_of_meeting }}</p>
+            <p>Je suis {{ m.user }}</p>
+          </div>
+          <div class="visite-details">
+            <p>Je prévois d'organiser une réunion de shopping pour explorer les {{ m.category }} disponibles au magasin {{ m.store_name }} à {{ m.location }} .</p> <br>
+            <p>les participants: {{m.get_participant_names}} </p>
+          </div>
+        </div>
+        <!-- Bouton de suppression -->
+        <div class="btn-container">
+          <form method="post" action="{% url 'supprimer_Meet' m.id %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Supprimer</button>
+          </form>
+        </div>
+      
+      </div>
+    {% endfor %}
+
+    <a href="{% url 'shopping_meet' %}" class="btn btn-primary">Ajouter un nouveau planning</a>
+  </body>
+</html>

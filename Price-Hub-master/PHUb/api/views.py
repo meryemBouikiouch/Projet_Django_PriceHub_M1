@@ -15,6 +15,7 @@ from .models import HistoriqueVisite
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse
 from .models import Souhaits
+from .models import *
 
 
 
@@ -350,7 +351,10 @@ def confirmer_creation_groupe(request):
 
             return render(request, 'mesgroupes.html', {'groupe': groupe, 'category': category, 'brand': brand, 'name': name, 'personnes_du_groupe': personnes_du_groupe})
 
-    return redirect('mes_groupes')
+    return JsonResponse({'success': False})
+def shopping_meet(request):
+
+    return render(request, 'ShoppingMeet.html', {})
 def mesgroupes(request, groupe_id):
     groupe = get_object_or_404(Groupe, id=groupe_id)
     groupes_uniques = set(Groupe.objects.all())  # Utilisation d'un ensemble pour des groupes uniques
@@ -393,3 +397,40 @@ def mes_groupes(request):
     else:
         # Rediriger vers la page de connexion si l'utilisateur n'est pas connecté
         return redirect('nom_de_votre_page_de_connexion')
+    
+
+
+def planifier_reunion(request):
+    if request.method == 'POST':
+        category_meet = request.POST.get('category')
+        souhaits_participants = Souhaits.objects.filter(category=category_meet)
+
+        meeting = Meeting.objects.create(
+            user=request.user,
+            category=category_meet,
+            store_name=request.POST.get('Nom du magasin'),
+            location=request.POST.get('Lieu'),
+            date_of_meeting=request.POST.get('date_of_visit')
+        )
+
+        meeting.participants.set(souhaits_participants)
+
+        return JsonResponse({'message': 'Le meeting a été enregistré avec succès!'})
+    else:
+        return JsonResponse({'message': 'La requête n\'est pas de type POST'})
+
+
+def afficherMeet(request):
+    user_meetings = Meeting.objects.filter(user=request.user)
+    return render(request, 'afficherMeet.html', {'Meet': user_meetings})
+def get_participants(request):
+    category_id = request.GET.get('category')
+    participants = Souhaits.objects.filter(category=category_id).values('user__id', 'user__username').distinct()
+    return JsonResponse(list(participants), safe=False)
+
+def supprimer_Meet(request, meeting_id):
+    meeting = get_object_or_404(Meeting, pk=meeting_id)
+    meeting.delete()
+    return redirect('afficherMeet')
+
+ 
