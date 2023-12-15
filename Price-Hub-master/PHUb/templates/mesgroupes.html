@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Résumé du Groupe</title>
+    <!-- Ajoutez les liens vers les bibliothèques Bootstrap et MDB ici -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.css">
+    <!-- Ajoutez le lien vers votre fichier de style personnalisé si nécessaire -->
+    <link rel="stylesheet" href="{% static 'css/styles.min.css' %}">
+    <style>
+        body {
+            background-color: #fce4ec; /* Rose clair */
+            font-family: 'Roboto', sans-serif;
+        }
+
+        h1 {
+            color: black; /* Bleu clair */
+        }
+
+        p {
+            color: #42a5f5; /* Bleu clair */
+            margin-bottom: 0.5rem;
+        }
+
+        h2 {
+            color: black; /* Bleu clair */
+            margin-top: 1.5rem;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 1rem;
+        }
+
+        button {
+            background-color: #e91e63; /* Rose */
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #ad1457; /* Rose foncé */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Résumé du Groupe</h1>
+        <p>Catégorie : {{ groupe.category }}</p>
+        <p>Marque : {{ groupe.brand }}</p>
+        <p>Nom de souhait : {{ groupe.name }}</p>
+
+        <h2>Personnes du groupe :</h2>
+        <ul>
+            {% for personne in personnes_du_groupe %}
+                <li>
+                    {{ personne.user.username }} - {{ personne.phone_number }} - {{ personne.status }}
+                    <form method="POST" action="{% url 'afficher_historique' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="personne_id" value="{{ personne.id }}">
+                        <button type="submit">Afficher l'historique</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <!-- Ajoutez le script MDB si nécessaire -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.js"></script>
+</body>
+
+</html>

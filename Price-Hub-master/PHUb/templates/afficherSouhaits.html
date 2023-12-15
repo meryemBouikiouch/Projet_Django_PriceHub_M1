@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/stylestb.css' %}" />
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/styles.min.css' %}" />
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+
+    <title>Afficher les souhaits</title>
+  </head>
+  <body>
+    <h1>Détails des souhaits</h1>
+
+    {% for s in MesSouhaits %}
+      <div class="visite-container">
+        <div class="visite-info">
+          <div class="visite-header">
+            <p>Je suis {{ s.user }}</p>
+          </div>
+          <div class="visite-details">
+            <p>Je souhaite {{ s.category }} {{ s.name }} de la marque {{ s.brand }}. Voici mon numéro de téléphone : {{ s.phone_number }}. Si un groupe est intéressé pour faire un meeting shopping, veuillez m'appeler.</p>
+          </div>
+        </div>
+        <!-- Bouton de suppression -->
+        <div class="btn-container">
+          <form method="post" action="{% url 'supprimer_souhaits' s.id %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Supprimer</button>
+          </form>
+        </div>
+      
+        <button class="btn btn-warning" onclick="changerStatut({{ s.id }}, '{{ s.status }}')">{{ s.status }}</button>
+
+      </div>
+    {% endfor %}
+
+    <a href="{% url 'souhaits' %}" class="btn btn-primary">Ajouter un nouveau souhait</a>
+    <script>
+        function changerStatut(souhaitId, statutActuel) {
+          // Utilisez AJAX pour envoyer la requête POST
+          $.ajax({
+            type: 'POST',
+            url: `/changer_statut/${souhaitId}/`,
+            data: {'csrfmiddlewaretoken': '{{ csrf_token }}'},
+            success: function(response) {
+              if (response.success) {
+                // Mise à jour réussie, peut-être mettre à jour l'interface utilisateur ici
+                alert(`Statut mis à jour avec succès! Nouveau statut : ${response.nouveau_statut}`);
+                location.reload();
+              } else {
+                alert('Erreur lors de la mise à jour du statut.');
+              }
+            },
+            error: function() {
+              alert('Erreur lors de la requête AJAX.');
+            }
+          });
+        }
+      </script>
+  </body>
+</html>

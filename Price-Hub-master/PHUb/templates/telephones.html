@@ -1,17 +1,127 @@
+{% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/tel.css' %}">
+    <style>
+        /* Ajoutez vos styles personnalisés ici */
+        body {
+            background-color: #eee;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .btn-primary,
+        .btn-info,
+        .btn-success {
+            margin-bottom: 10px;
+        }
+
+        .phone-card {
+            margin-bottom: 20px;
+        }
+
+        .phone-image {
+            height: 200px;
+            object-fit: contain;
+        }
+    </style>
     <title>Liste des téléphones</title>
 </head>
+
 <body>
-    <h1>Liste des téléphones</h1>
-    <ul>
-        {% for phone in phones %}
-            <li>
-                <h2>{{ phone.phone_name }}</h2>
-                <img src="{{ phone.image }}" alt="{{ phone.phone_name }}">
-            </li>
-        {% endfor %}
-    </ul>
+    <div class="container">
+        <!-- Bouton de tri -->
+        <form id="sortForm" action="{% url 'telephones' %}" method="get" style="display: inline-block;">
+            <label for="sortOption" class="form-label">Trier par :</label>
+            <select class="form-select" id="sortOption" name="sort">
+                <option value="price" {% if sort_option == 'price' %}selected{% endif %}>Prix</option>
+                <option value="rating" {% if sort_option == 'rating' %}selected{% endif %}>Évaluation</option>
+                <option value="review" {% if sort_option == 'review' %}selected{% endif %}>Avis</option>
+            </select>
+            <input type="hidden" name="q" value="{{ query }}">
+            <button type="submit" class="btn btn-primary">Trier</button>
+        </form>
+
+        <!-- Bouton de recherche avancée -->
+        <button id="advancedSearchButton" class="btn btn-info" style="display: inline-block;">Recherche avancée</button>
+
+        <!-- Bouton Ajouter -->
+        <button id="addPhoneButton" class="btn btn-success" style="display: inline-block;">Ajouter un téléphone</button>
+
+        <!-- Formulaire de recherche avancée -->
+        <form id="advancedSearchForm" action="{% url 'telephones' %}" method="get" style="display: none;">
+            {{ advanced_search_form.as_p }}
+            <input type="submit" name="advanced_search" class="btn btn-primary" value="Rechercher">
+        </form>
+
+        <!-- Formulaire d'ajout de téléphone -->
+        <form id="addPhoneForm" method="post" action="{% url 'telephones' %}" style="display: none;">
+            {% csrf_token %}
+            {{ add_phone_form.as_p }}
+            <button type="submit" class="btn btn-success" name="ajouter_telephone">Ajouter</button>
+        </form>
+        <br>
+        <br>
+        <!-- Grille de téléphones en ligne et en colonnes -->
+        <div class="row">
+            {% for phone in phones %}
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="card phone-card">
+                        <img src="{{ phone.image }}" class="card-img-top phone-image" alt="{{ phone.phone_name }}">
+                        <div class="card-body">
+                            {% if phone.identifiant %}
+                                <h2 class="card-title"><a href="{% url 'phone_detail' phone_id=phone.identifiant %}">{{ phone.phone_name }}</a></h2>
+                            {% else %}
+                                <h2 class="card-title">{{ phone.phone_name }}</h2>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Cacher le formulaire de recherche avancée et d'ajout initialement
+            var advancedSearchForm = document.getElementById('advancedSearchForm');
+            var addPhoneForm = document.getElementById('addPhoneForm');
+            
+            advancedSearchForm.style.display = 'none';
+            addPhoneForm.style.display = 'none';
+
+            // Afficher ou masquer le formulaire de recherche avancée lorsqu'on clique sur le bouton
+            document.getElementById('advancedSearchButton').addEventListener('click', function() {
+                advancedSearchForm.style.display = (advancedSearchForm.style.display === 'none' || advancedSearchForm.style.display === '') ? 'block' : 'none';
+                addPhoneForm.style.display = 'none'; // Cacher le formulaire d'ajout
+            });
+
+            // Afficher ou masquer le formulaire d'ajout lorsqu'on clique sur le bouton
+            document.getElementById('addPhoneButton').addEventListener('click', function() {
+                addPhoneForm.style.display = (addPhoneForm.style.display === 'none' || addPhoneForm.style.display === '') ? 'block' : 'none';
+                advancedSearchForm.style.display = 'none'; // Cacher le formulaire de recherche avancée
+            });
+        });
+    </script>
 </body>
+
 </html>

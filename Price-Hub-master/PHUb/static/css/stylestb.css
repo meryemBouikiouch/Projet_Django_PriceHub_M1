@@ -1,0 +1,54 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+.visite-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #ccc;
+    margin: 10px 0;
+    padding: 10px;
+}
+
+.visite-info {
+    flex: 1;
+}
+
+.visite-header {
+    font-size: 18px;
+    font-weight: bold;
+    color: #007BFF;
+}
+
+.visite-details {
+    font-size: 16px;
+    color: #555;
+}
+
+.btn-container {
+    text-align: right;
+}
+
+.btn {
+    background-color: #007BFF;
+    color: #fff;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-danger {
+    background-color: #DC3545;
+}
+
+.btn-primary {
+    background-color: #007BFF;
+    margin-top: 20px;
+}

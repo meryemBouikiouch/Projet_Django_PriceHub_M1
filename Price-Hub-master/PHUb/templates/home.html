@@ -25,6 +25,20 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
+              <a class="nav-link text-white no-modal" href="{% url 'shopping_meet' %}" id="shoppingMeetingLink">shopping meeting</a>
+              <a class="nav-link text-white no-modal" href="{% url 'groupe' %}">Creé un Groupe</a>
+
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white no-modal" href="{% url 'souhaits' %}">Mes souhaits</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white no-modal" href="{% url 'tableaubord' %}">Tableau de bord</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white no-modal" href="{% url 'histoire' %}">Votre histoire</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link text-white no-modal" href="{% url 'telephones' %}">Téléphones</a>
             </li>
             <li class="nav-item">
@@ -38,9 +52,9 @@
       <div class="masthead-content">
         <div class="container">
           <!-- barre de recherche -->
-        <form class="d-flex ">
-          <input class="form-control me-2" type="search" placeholder="Rechercher" aria-label="Rechercher" />
-          <button class="btn btn-secondary" type="submit">Rechercher</button>
+          <form class="d-flex" method="get" action="{% url 'telephones' %}">
+            <input class="form-control me-2" type="search" name="q" placeholder="Rechercher" aria-label="Rechercher" />
+            <button class="btn btn-secondary" type="submit">Rechercher</button>
         </form>
           <h1 class="masthead-heading mb-0">BIENVENUE CHEZ PRICE_HUB</h1>
           <h2 class="masthead-subheading mb-0">Vous vivrez la meilleure expérience</h2>

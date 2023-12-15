@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détails du Téléphone</title>
+    <link rel="stylesheet" href="{% static 'css/details.css' %}" />
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>{{ phone.phone_name }}</h1>
+        </div>
+
+        <div class="content">
+            <!-- Ajout de l'image -->
+            <img src="{{ phone.image }}" alt="{{ phone.phone_name }}" class="phone-image">
+
+            <div class="details">
+                <p>Rating: {{ phone.rating }}</p>
+                <p>Total Reviews: {{ phone.totalReviews }}</p>
+
+                <!-- Prix avec bouton de modification -->
+                <p>
+                    Price: {% if phone.new_price %} {{ phone.new_price }} {% else %} {{ phone.price_USD }} {% endif %}
+                    <button class="edit-button" onclick="toggleEditForm('price')">Modifier</button>
+                </p>
+                <form method="post" action="{% url 'update_phone_detail' %}" class="edit-form" id="edit-form-price" style="display: none;">
+                    {% csrf_token %}
+                    <input type="hidden" name="phone_id" value="{{ phone.identifiant }}">
+                    <label for="new-price">Nouvelle valeur :</label>
+                    <input type="text" name="new_price" id="new-price" required>
+                    <button type="submit" onclick="applyUpdate()">Enregistrer</button>
+                </form>
+
+                <!-- Autres caractéristiques du téléphone -->
+                <p>Operating System: {{ phone.os }}</p>
+                <p>Screen Size (inches): {{ phone.inches }}</p>
+                <p>Resolution: {{ phone.resolution }}</p>
+                <p>Battery: {{ phone.battery }} mAh</p>
+                <p>Battery Type: {{ phone.battery_type }}</p>
+                <p>RAM: {{ phone.ram_GB }} GB</p>
+                <p>Announcement Date: {{ phone.announcement_date }}</p>
+                <p>Weight: {{ phone.weight_g }} g</p>
+                <p>Storage: {{ phone.storage_GB }} GB</p>
+                <p>Video Capabilities:</p>
+                <ul>
+                    <!-- ... (Autres caractéristiques vidéo) ... -->
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Fonction pour basculer l'affichage du formulaire de modification
+        function toggleEditForm(feature) {
+            var form = document.getElementById('edit-form-' + feature);
+            form.style.display = (form.style.display === 'none' || form.style.display === '') ? 'block' : 'none';
+        }
+
+        // Fonction pour appliquer la mise à jour avant de soumettre le formulaire
+        function applyUpdate() {
+            // Ajoutez ici d'autres actions si nécessaire avant de soumettre le formulaire
+            // ...
+
+            // Soumettez le formulaire
+            document.getElementById('edit-form-price').submit();
+        }
+    </script>
+</body>
+</html>
