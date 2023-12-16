@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/stylestb.css' %}" />
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/styles.min.css' %}" />
+    <title>Mes Groupes</title>
+</head>
+<body>
+
+<h1>Mes Groupes</h1>
+
+{% if groupes %}
+    <ul class="budget-list">
+        {% for groupe in groupes %}
+            <div class="visite-container">
+                <div class="visite-info">
+                    <div class="visite-header">
+                        <a href="{% url 'mesgroupes' groupe_id=groupe.id %}">
+                        <p>{{ groupe.nom }}</p>
+                    </div>
+                    <div class="visite-details">
+                        <!-- Ajoutez d'autres informations du groupe ici -->
+                    </div>
+                </div>
+                <!-- Bouton de suppression -->
+                <div class="btn-container">
+                    <form method="post" action="{% url 'supprimer_groupe' groupe_id=groupe.id %}" style="display: inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Supprimer</button>
+                    </form>
+                </div>
+            </div>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Aucun groupe trouvé.</p>
+{% endif %}
+<a href="{% url 'groupe' %}" class="btn btn-primary">Ajouter un Groupe</a>
+</body>
+</html>
+

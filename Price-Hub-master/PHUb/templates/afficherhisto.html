@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historique de Visite</title>
+    <!-- Ajoutez les liens vers les bibliothèques Bootstrap et MDB ici -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.css">
+    <!-- Ajoutez le lien vers votre fichier de style personnalisé si nécessaire -->
+    <link rel="stylesheet" href="{% static 'css/styles.min.css' %}">
+    <style>
+        body {
+            background-color: #fce4ec; /* Rose clair */
+            font-family: 'Roboto', sans-serif;
+        }
+
+        h1 {
+            color: black; /* Bleu clair */
+        }
+
+        p {
+            color: #42a5f5; /* Bleu clair */
+            margin-bottom: 0.5rem;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Historique de Visite</h1>
+        <p>Historique pour {{ personne.user.username }} - {{ personne.phone_number }} - {{ personne.status }}</p>
+
+        <ul>
+            {% for visite in historique %}
+                <li>
+                    {{ visite.date_of_visit }} - {{ visite.store_name }} - {{ visite.location }} - {{ visite.prix }}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <!-- Ajoutez le script MDB si nécessaire -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.js"></script>
+</body>
+
+</html>

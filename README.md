@@ -1,30 +1,15 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-Licence: MIT - Ce badge indique que le projet est sous licence MIT.
-
-[![Django Version](https://img.shields.io/badge/Django-4.2.5-blue)](https://docs.djangoproject.com/en/4.2/)
-Django Version: 4.2.5 - Ce badge indique l'utilisation de Django version 4.2.5 dans le projet.
-
-[![Python Version](https://img.shields.io/badge/Python-3.11.5-blue.svg)](https://www.python.org/downloads/release/python-3115/)
-Python Version: 3.11.5 - Ce badge indique l'utilisation de Python version 3.11.5 dans le projet.
-
-[![SQLite Version](https://img.shields.io/badge/SQLite-3-blue)](https://www.sqlite.org/index.html)
-SQLite Version: 3 - Ce badge indique l'utilisation de SQLite version 3 dans le projet.
-
 [![GitHub release](https://img.shields.io/github/v/release/meryemBouikiouch/Projet_Django_PriceHub_M1.svg)](https://github.com/meryemBouikiouch/Projet_Django_PriceHub_M1/releases/tag/V0.2)
-GitHub release: V0.2 - Ce badge indique la release V0.2 du projet sur GitHub.
 
 [![Django CI](https://github.com/meryemBouikiouch/Projet_Django_PriceHub_M1/actions/workflows/django.yml/badge.svg)](https://github.com/meryemBouikiouch/Projet_Django_PriceHub_M1/actions/workflows/django.yml)
-Django CI: Ce badge indique l'état de la CI (Intégration Continue) pour le framework Django.
-
-![Codacy coverage](https://img.shields.io/codacy/coverage/:Projet_Django_PriceHub_M1)
-
-![Scrutinizer code quality (GitHub/Bitbucket)](https://img.shields.io/scrutinizer/quality/g/:meryemBouikiouch/:Projet_Django_PriceHub_M1/:master)
 
 
-# Projet Django PriceHub M1
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/392df07d1f33495fa1261bc10ee4b2df)](https://app.codacy.com/gh/meryemBouikiouch/Projet_Django_PriceHub_M1/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade) 
 
-Ce repository contient le code source du projet Django PriceHub M1.
 
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/meryemBouikiouch/Projet_Django_PriceHub_M1/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/meryemBouikiouch/Projet_Django_PriceHub_M1/?branch=master)
+
+[![Build Status](https://scrutinizer-ci.com/g/meryemBouikiouch/Projet_Django_PriceHub_M1/badges/build.png?b=master)](https://scrutinizer-ci.com/g/meryemBouikiouch/Projet_Django_PriceHub_M1/build-status/master)
 ## Description
 
 PriceHub est une plateforme web basée sur Django qui permet de comparer les prix des produits numériques dans différents magasins en ligne. Ce projet a été développé dans le cadre du cours de DevOps en M1 MIAGE a Nanterre Université.
@@ -54,28 +39,37 @@ Lancer le serveur de développement: python manage.py runserver
 
 Ce projet est sous licence MIT
 
-# Fonctionnalités principales ::::
+# Fonctionnalités Principales
 
-### Recherche et sélection de téléphones
+## Recherche et Sélection de Téléphones
 
-L'application permet aux utilisateurs de rechercher des téléphones selon leurs préférences. 
-Les utilisateurs ont la possibilité d'effectuer une recherche simple ou avancée. 
-La recherche avancée leur permet de filtrer les résultats en fonction de critères tels que le prix, la capacité de la RAM et d'autres spécifications pertinentes. 
-Cela permet aux utilisateurs de trouver le téléphone qui correspond le mieux à leurs besoins.
+- **Recherche Simple ou Avancée :** Les utilisateurs peuvent rechercher des téléphones avec des filtres avancés tels que le prix et les spécifications.
 
-### Comparaison des prix lors des déplacements
+## Recherche d'Offres en Se Déplaçant dans les Magasins de Téléphones
 
-Les utilisateurs peuvent saisir les prix des téléphones qu'ils trouvent dans différents magasins. 
-Grâce au tableau de bord de l'application, ils peuvent comparer les différences de prix entre les différents endroits visités. 
-Cette fonctionnalité aide les utilisateurs à prendre des décisions éclairées en se basant sur les prix disponibles et à se diriger vers l'endroit enregistré sur leur tableau de bord pour effectuer leur achat.
+- **Collecte d'Informations en Déplacement :** Utilisateurs enregistrent les prix de téléphones en se déplaçant.
+- **Enregistrement des Données sur l'Application :** Les données sont saisies dans l'application pour comparaison.
 
-### À venir
+## Ajout d'une Fonctionnalité de Liste de Souhaits
 
-Nous travaillons actuellement sur deux autres fonctionnalités pour améliorer encore l'expérience des utilisateurs. Restez à l'écoute pour les prochaines mises à jour !
+- **Création de Liste de Souhaits :** Utilisateurs créent des listes pour se rappeler des articles.
+- **Diversification des Catégories :** Inclut différents types de produits pour une liste complète.
+- **Fermeture des Souhaits :** Possibilité de marquer un souhait comme accompli après l'achat.
 
+## Fonctionnalité d'Ajout/Modification de Téléphones
 
+- **Ajout Manuel dans la Base de Données :** Utilisateurs ajoutent des téléphones manquants.
+- **Modification des Prix :** Ils ajustent les prix lors de changements en magasin.
+- **Actualisation de la Base de Données Collaborative :** Les modifications contribuent à une base de données collaborative.
 
+## Création de Groupes et Collaboration
 
+- **Formation de Groupes :** Utilisateurs créent des groupes pour partager des souhaits d'achat.
+- **Communication Facilitée :** L'application facilite les discussions sur les prix et les offres.
+- **Historique Collaboratif :** Les membres notent les lieux visités et les prix pour des comparaisons collaboratives.
 
+## Organisation de Shopping Meetings (Groupes de Sorties)
 
-
+- **Création de Shopping Meetings :** Possibilité de planifier des sorties communes.
+- **Planification de Sorties Communes :** Les groupes visitent des lieux correspondant à leurs souhaits.
+- **Entraide et Découverte des Meilleures Offres :** Favorise l'entraide pour dénicher les meilleures offres.
