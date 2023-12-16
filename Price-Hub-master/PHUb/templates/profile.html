@@ -1,0 +1,13 @@
+<!-- profile.html -->
+{% load static %}
+
+{% block content %}
+  <h2>Vos téléphones favoris :</h2>
+  <ul>
+    {% for favorite in user.favoritephone_set.all %}
+      <li>{{ favorite.phone.name }}</li>
+    {% empty %}
+      <li>Aucun téléphone n'a été ajouté aux favoris.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

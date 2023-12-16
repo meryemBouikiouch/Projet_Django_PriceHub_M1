@@ -48,6 +48,11 @@
               <a class="nav-link text-white no-modal" href="##" id="telephonesLink">Téléphones</a>
             </li>
             <li class="nav-item">
+              <a class="nav-link text-white no-modal" href="##" id="CommunauteLink">Communauté interactive</a>
+
+              <a class="nav-link text-white no-modal" href="##" id="InvitationsLink">Invitations</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link text-white" href="{% url 'sign_up' %}">S'inscrire</a>
             </li>
             <li class="nav-item">
@@ -220,9 +225,25 @@
           openLoginModal()
         })
       }
+      // Ajout d'un écouteur pour le lien "tabeau de bord"
+      var CommunauteLink = document.getElementById('CommunauteLink')
+      if (CommunauteLink) {
+        CommunauteLink.addEventListener('click', function (event) {
+          event.preventDefault()
+          openLoginModal()
+        })
+      }
       var histoireLink = document.getElementById('histoireLink')
       if (histoireLink) {
         histoireLink.addEventListener('click', function (event) {
+          event.preventDefault()
+          openLoginModal()
+        })
+      }
+      
+      var InvitationsLink = document.getElementById('InvitationsLink')
+      if (InvitationsLink) {
+        InvitationsLink.addEventListener('click', function (event) {
           event.preventDefault()
           openLoginModal()
         })

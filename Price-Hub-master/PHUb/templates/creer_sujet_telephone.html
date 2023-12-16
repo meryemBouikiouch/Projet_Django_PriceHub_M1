@@ -1,0 +1,20 @@
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+  <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/styles.min.css' %}" />    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creer_sujet_telephone</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Créer un Nouveau Sujet</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Soumettre</button>
+        </form>
+    </div>
+</body>
+</html>

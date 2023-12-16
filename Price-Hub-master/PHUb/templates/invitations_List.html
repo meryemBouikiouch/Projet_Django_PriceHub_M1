@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des Invitations</title>
+    <link href="{% static 'css/your_style.css' %}" rel="stylesheet">
+    <!-- Ajoutez d'autres liens CSS si nécessaire -->
+</head>
+<body>
+    <div class="container">
+        <h1>Liste des Invitations</h1>
+        {% for invitation in invitations %}
+            <div class="invitation-card">
+                <p>Invitation à {{ invitation.meeting.store_name }} le {{ invitation.meeting.date_of_meeting }}</p>
+                <!-- Ajoutez d'autres détails si nécessaire -->
+            </div>
+            
+        {% endfor %}
+    </div>
+</body>
+</html>

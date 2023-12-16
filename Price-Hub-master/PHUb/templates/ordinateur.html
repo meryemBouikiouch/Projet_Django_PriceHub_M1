@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Liste des Ordinateurs</title>
+</head>
+<body>
+    <h1>Ordinateurs</h1>
+    <ul>
+        {% for ordinateur in ordinateurs %}
+            <li>{{ ordinateur.url_image }} - {{ ordinateur.nom_produit }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
