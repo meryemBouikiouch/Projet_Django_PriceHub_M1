@@ -52,6 +52,7 @@ class Souhaits(models.Model):
         ('En cours de traitement', 'En cours de traitement'),
         ('Clôturé', 'Clôturé'),
     ]
+
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     category = models.CharField(max_length=255)
     brand = models.CharField(max_length=100, null=True, blank=True)
@@ -61,7 +62,15 @@ class Souhaits(models.Model):
 
     def __str__(self):
         return f"{self.user.username} - {self.category} - {self.brand} - {self.name} - {self.phone_number} - {self.status}"
-    
+
+    def save(self, *args, **kwargs):
+        # Si le statut est mis à jour à "Clôturé", retirer la personne du groupe
+        if self.status == 'Clôturé':
+            groupe = Groupe.objects.filter(category=self.category, brand=self.brand, name=self.name).first()
+            if groupe:
+                groupe.personnes.remove(self)
+
+        super().save(*args, **kwargs)
 # class Meeting(models.Model):
 #     user = models.ForeignKey(User, on_delete=models.CASCADE)
 #     category = models.CharField(max_length=255)
@@ -109,3 +118,19 @@ class Personne(models.Model):
 
     def __str__(self):
         return self.user.username
+
+
+class Budget(models.Model):
+    TYPE_CHOICES = [
+        ('souhait', 'Budget pour un Souhait'),
+        ('meet', 'Budget pour un Meet'),
+    ]
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    type = models.CharField(max_length=10, choices=TYPE_CHOICES)
+    souhait = models.ForeignKey(Souhaits, on_delete=models.CASCADE, null=True, blank=True)
+    meet = models.ForeignKey(Meeting, on_delete=models.CASCADE, null=True, blank=True)
+    montant = models.DecimalField(max_digits=10, decimal_places=2)
+
+    def __str__(self):
+        return f"{self.type} - {self.souhait} - {self.meet} - {self.montant}"

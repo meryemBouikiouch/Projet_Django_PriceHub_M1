@@ -32,5 +32,11 @@ urlpatterns = [
     path('planifier_reunion/',planifier_reunion,name='planifier_reunion'),
     path('get_participants/', get_participants, name='get_participants'),
     path('supprimer_Meet/<int:meeting_id>/', supprimer_Meet, name='supprimer_Meet'),
+    path('Budjet/', Budjet, name='Budjet'),
+    path('afficherBudjet/', afficher_budjet, name='afficherBudjet'),
+    path('supprimer_budjet/<int:budget_id>/', supprimer_budjet, name='supprimerBudjet'),
+    path('afficherBudjet/', afficher_budjet, name='afficher_budjet'),
+    path('supprimer_groupe/<int:groupe_id>/', supprimer_groupe, name='supprimer_groupe'),
+
 
 ]
