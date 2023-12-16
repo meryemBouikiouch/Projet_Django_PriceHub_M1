@@ -9,13 +9,16 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.core.mail import EmailMessage
 from django.contrib import messages
-from .models import Groupe, Personne, Phone
+from .models import Groupe, Personne, Phone, Favori
 from .forms import AddPhoneForm, AdvancedSearchForm
 from .models import HistoriqueVisite
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse
 from .models import Souhaits
 from .models import *
+from django.http import HttpResponseNotAllowed
+from django.shortcuts import render, redirect, get_object_or_404
+
 
 from .forms import *
 
@@ -460,6 +463,7 @@ def supprimer_Meet(request, meeting_id):
     meeting.delete()
     return redirect('afficherMeet')
 
+
 def communaute(request) :
         return render(request, 'communaute.html', {})
 #-------------------telephone----------------
@@ -752,4 +756,35 @@ def supprimer_groupe(request, groupe_id):
     # Traitement pour supprimer le groupe
     groupe.delete()
     return redirect('mes_groupes')
+
+
+
+def inviter_ami(request):
+    if request.method == 'POST':
+        # Traitement du formulaire d'invitation ici
+        # Envoi de l'invitation, attribution de la récompense, etc.
+        messages.success(request, "Invitation envoyée avec succès, vous avez gagné un coupon de -30% de réduction !")
+        return redirect('confirmation_invitation')
+    return render(request, 'invitation_form.html')
+
+def confirmation_invitation(request):
+    return render(request, 'confirmation_invitation.html')
+
+@login_required
+def ajouter_favori(request, phone_id):
+    phone = get_object_or_404(Phone, identifiant=phone_id)
+    favori, created = Favori.objects.get_or_create(user=request.user, phone=phone)
+    # Vous pouvez ajouter des messages de confirmation, etc.
+    return redirect('phone_detail', phone_id=phone_id)
+
+@login_required
+def retirer_favori(request, phone_id):
+    phone = get_object_or_404(Phone, identifiant=phone_id)
+    Favori.objects.filter(user=request.user, phone=phone).delete()
+    return redirect('mes_favoris')
+
+@login_required
+def mes_favoris(request):
+    favoris = Favori.objects.filter(user=request.user)
+    return render(request, 'mes_favoris.html', {'favoris': favoris})
 
