@@ -73,4 +73,27 @@ Ce projet est sous licence MIT
 - **Création de Shopping Meetings :** Possibilité de planifier des sorties communes.
 - **Planification de Sorties Communes :** Les groupes visitent des lieux correspondant à leurs souhaits.
 - **Entraide et Découverte des Meilleures Offres :** Favorise l'entraide pour dénicher les meilleures offres.
->>>>>>> 352788c670aef8fa5b2fe4a67e06158b38c68c03
+
+##  Création de Budget
+Définition de Budget pour des Achats ou Sorties : Permet à l'utilisateur de fixer un budget pour des souhaits spécifiques ou des sorties de shopping planifiées.
+Gestion Efficace des Finances : Aide les utilisateurs à contrôler leurs dépenses, en évitant de dépasser leur budget prédéfini.
+Fonctionnalités d'Ajout et de Suppression de Budgets : Offre une flexibilité pour ajuster les budgets en fonction des besoins, assurant une gestion optimale des finances.
+
+## Communauté Interactive
+Plateforme Collaborative pour Partager des Expériences : Engage les utilisateurs à rejoindre des communautés basées sur des catégories de produits spécifiques.
+Création et Participation à des Discussions : Encourage la création de nouveaux sujets et la participation à des débats sur des produits et expériences liés.
+Gestion des Contributions : Permet aux utilisateurs de supprimer leurs sujets, offrant un contrôle sur le contenu qu'ils partagent.
+
+## Gestion Dynamique des Groupes
+Ajout et Suppression Faciles de Groupes : Permet une gestion flexible des groupes en fonction des intérêts et des souhaits actuels.
+Mise à Jour Automatique des Membres : Si un utilisateur marque un souhait comme "clôturé", il est automatiquement retiré du groupe concerné.
+Association Pertinente avec les Objectifs : Assure que les membres du groupe sont activement engagés dans des souhaits en cours.
+
+Fonctionnalité des Favoris
+Liste Personnalisée de Produits Préférés : Permet aux utilisateurs de marquer et de sauvegarder leurs articles préférés pour un accès rapide ultérieur.
+Facilitation de la Consultation et de la Comparaison : Aide à retrouver et comparer facilement les produits favoris sans recherches répétées.
+
+Fonctionnalité d'Invitation
+Inviter des Amis à Rejoindre et Participer : Permet d'envoyer des invitations pour s'inscrire sur le site ou pour rejoindre des activités spécifiques.
+Renforcement de la Communauté : Favorise l'inscription de nouveaux membres et la collaboration au sein de groupes de shopping ou d'événements spéciaux.
+
