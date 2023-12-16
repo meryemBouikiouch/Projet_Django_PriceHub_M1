@@ -40,6 +40,9 @@
               <a class="nav-link text-white no-modal" href="##" id="telephonesLink">Téléphones</a>
             </li>
             <li class="nav-item">
+              <a class="nav-link text-white no-modal" href="##" id="CommunauteLink">Communauté interactive</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link text-white" href="{% url 'sign_up' %}">S'inscrire</a>
             </li>
             <li class="nav-item">
@@ -208,6 +211,14 @@
       var BordLink = document.getElementById('bordLink')
       if (BordLink) {
         BordLink.addEventListener('click', function (event) {
+          event.preventDefault()
+          openLoginModal()
+        })
+      }
+      // Ajout d'un écouteur pour le lien "tabeau de bord"
+      var CommunauteLink = document.getElementById('CommunauteLink')
+      if (CommunauteLink) {
+        CommunauteLink.addEventListener('click', function (event) {
           event.preventDefault()
           openLoginModal()
         })

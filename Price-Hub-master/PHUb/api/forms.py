@@ -1,6 +1,5 @@
 from django import forms
-from .models import Phone
-from .models import Souhaits
+from .models import *
 
 class AdvancedSearchForm(forms.Form):
     nom = forms.CharField(required=False)
@@ -25,3 +24,68 @@ class AddPhoneForm(forms.ModelForm):
     def clean(self):
         cleaned_data = super().clean()
         return cleaned_data
+class Sujet_telephoneForm(forms.ModelForm):
+    class Meta:
+        model = Sujet_telephone
+        fields = ['titre', 'description']
+
+class Commentaire_telephoneForm(forms.ModelForm):
+    class Meta:
+        model = Commentaire_telephone
+        fields = ['texte']
+
+
+class Sujet_tabletteForm(forms.ModelForm):
+    class Meta:
+        model = Sujet_tablette
+        fields = ['titre', 'description']
+
+class Commentaire_tabletteForm(forms.ModelForm):
+    class Meta:
+        model = Commentaire_tablette
+        fields = ['texte']
+
+
+class Sujet_ordinateurForm(forms.ModelForm):
+    class Meta:
+        model = Sujet_ordinateur
+        fields = ['titre', 'description']
+
+class Commentaire_ordinateurForm(forms.ModelForm):
+    class Meta:
+        model = Commentaire_ordinateur
+        fields = ['texte']
+
+
+class Sujet_Accessoire_telephoneForm(forms.ModelForm):
+    class Meta:
+        model = Sujet_Accessoire_telephone
+        fields = ['titre', 'description']
+
+class Commentaire_Accessoire_telephoneForm(forms.ModelForm):
+    class Meta:
+        model = Commentaire_Accessoire_telephone
+        fields = ['texte']
+
+
+class Sujet_Accessoire_ordinateurForm(forms.ModelForm):
+    class Meta:
+        model = Sujet_Accessoire_ordinateur
+        fields = ['titre', 'description']
+
+class Commentaire_Accessoire_ordinateurForm(forms.ModelForm):
+    class Meta:
+        model = Commentaire_Accessoire_ordinateur
+        fields = ['texte']
+
+
+
+class Sujet_Accessoire_tabletteForm(forms.ModelForm):
+    class Meta:
+        model = Sujet_Accessoire_tablette
+        fields = ['titre', 'description']
+
+class Commentaire_Accessoire_tabletteForm(forms.ModelForm):
+    class Meta:
+        model = Commentaire_Accessoire_tablette
+        fields = ['texte']

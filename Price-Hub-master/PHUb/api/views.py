@@ -15,6 +15,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse
 from .models import Souhaits
 from .models import *
+from .forms import *
 
 
 
@@ -179,6 +180,10 @@ def phone_detail(request, phone_id):
     context = {'phone': phone}
     return render(request, 'phone_detail.html', context)
 
+def ordinateur(request):
+    ordinateurs = Ordinateur.objects.all()
+    return render(request, 'ordinateur.html', {'ordinateurs': ordinateurs})
+
 def update_phone_detail(request):
     if request.method == 'POST':
         phone_id = request.POST.get('phone_id')
@@ -317,4 +322,261 @@ def supprimer_Meet(request, meeting_id):
     meeting.delete()
     return redirect('afficherMeet')
 
- 
+def communaute(request) :
+        return render(request, 'communaute.html', {})
+#-------------------telephone----------------
+
+def communaute_telephone(request) :
+        sujets = Sujet_telephone.objects.all()
+        return render(request, 'communaute_telephone.html', {'sujets': sujets})
+
+
+def creer_sujet_telephone(request):
+    if request.method == 'POST':
+        form = Sujet_telephoneForm(request.POST)
+        if form.is_valid():
+            sujet_telephone = form.save(commit=False)
+            sujet_telephone.auteur = request.user  # Associez l'utilisateur actuellement connecté en tant qu'auteur
+            sujet_telephone.save()
+            return redirect('communaute_telephone')
+    else:
+        form = Sujet_telephoneForm()
+    return render(request, 'creer_sujet_telephone.html', {'form': form})
+
+def details_sujet_telephone(request, sujet_telephone_id):
+    sujet_telephone = Sujet_telephone.objects.get(id=sujet_telephone_id)
+    commentaires = sujet_telephone.commentaires.all()  # Utilisez 'commentaires' ici
+
+    if request.method == 'POST':
+        form = Commentaire_telephoneForm(request.POST)
+        if form.is_valid():
+            commentaire_telephone = form.save(commit=False)
+            commentaire_telephone.sujet_telephone = sujet_telephone
+            commentaire_telephone.auteur = request.user
+            commentaire_telephone.save()
+            return redirect('details_sujet_telephone', sujet_telephone_id=sujet_telephone.id)
+    else:
+        form = Commentaire_telephoneForm()
+
+    return render(request, 'details_sujet_telephone.html', {'sujet_telephone': sujet_telephone, 'commentaires': commentaires, 'form': form})
+
+def supprimer_sujet_telephone(request, sujet_telephone_id):
+    sujet_telephone = get_object_or_404(Sujet_telephone, id=sujet_telephone_id)
+    if request.user == sujet_telephone.auteur:
+        sujet_telephone.delete()
+    return redirect('communaute_telephone')
+#--------Tablette------------------
+
+def communaute_tablette(request) :
+        sujets = Sujet_tablette.objects.all()
+        return render(request, 'communaute_tablette.html', {'sujets': sujets})
+
+
+def creer_sujet_tablette(request):
+    if request.method == 'POST':
+        form = Sujet_tabletteForm(request.POST)
+        if form.is_valid():
+            sujet_tablette = form.save(commit=False)
+            sujet_tablette.auteur = request.user  # Associez l'utilisateur actuellement connecté en tant qu'auteur
+            sujet_tablette.save()
+            return redirect('communaute_tablette')
+    else:
+        form = Sujet_tabletteForm()
+    return render(request, 'creer_sujet_tablette.html', {'form': form})
+
+def details_sujet_tablette(request, sujet_tablette_id):
+    sujet_tablette = Sujet_tablette.objects.get(id=sujet_tablette_id)
+    commentaires = sujet_tablette.commentaires.all()  # Utilisez 'commentaires' ici
+
+    if request.method == 'POST':
+        form = Commentaire_tabletteForm(request.POST)
+        if form.is_valid():
+            commentaire_tablette = form.save(commit=False)
+            commentaire_tablette.sujet_tablette = sujet_tablette
+            commentaire_tablette.auteur = request.user
+            commentaire_tablette.save()
+            return redirect('details_sujet_tablette', sujet_tablette_id=sujet_tablette.id)
+    else:
+        form = Commentaire_tabletteForm()
+
+    return render(request, 'details_sujet_tablette.html', {'sujet_tablette': sujet_tablette, 'commentaires': commentaires, 'form': form})
+
+def supprimer_sujet_tablette(request, sujet_tablette_id):
+    sujet_tablette = get_object_or_404(Sujet_tablette, id=sujet_tablette_id)
+    if request.user == sujet_tablette.auteur:
+        sujet_tablette.delete()
+    return redirect('communaute_tablette')
+
+
+#--------ordinateur -----------------
+
+def communaute_ordinateur(request) :
+        sujets = Sujet_ordinateur.objects.all()
+        return render(request, 'communaute_ordinateur.html', {'sujets': sujets})
+
+
+def creer_sujet_ordinateur(request):
+    if request.method == 'POST':
+        form = Sujet_ordinateurForm(request.POST)
+        if form.is_valid():
+            sujet_ordinateur = form.save(commit=False)
+            sujet_ordinateur.auteur = request.user  # Associez l'utilisateur actuellement connecté en tant qu'auteur
+            sujet_ordinateur.save()
+            return redirect('communaute_ordinateur')
+    else:
+        form = Sujet_ordinateurForm()
+    return render(request, 'creer_sujet_ordinateur.html', {'form': form})
+
+def details_sujet_ordinateur(request, sujet_ordinateur_id):
+    sujet_ordinateur = Sujet_ordinateur.objects.get(id=sujet_ordinateur_id)
+    commentaires = sujet_ordinateur.commentaires.all()  # Utilisez 'commentaires' ici
+
+    if request.method == 'POST':
+        form = Commentaire_ordinateurForm(request.POST)
+        if form.is_valid():
+            commentaire_ordinateur = form.save(commit=False)
+            commentaire_ordinateur.sujet_ordinateur = sujet_ordinateur
+            commentaire_ordinateur.auteur = request.user
+            commentaire_ordinateur.save()
+            return redirect('details_sujet_ordinateur', sujet_ordinateur_id=sujet_ordinateur.id)
+    else:
+        form = Commentaire_ordinateurForm()
+
+    return render(request, 'details_sujet_ordinateur.html', {'sujet_ordinateur': sujet_ordinateur, 'commentaires': commentaires, 'form': form})
+
+def supprimer_sujet_ordinateur(request, sujet_ordinateur_id):
+    sujet_ordinateur = get_object_or_404(Sujet_ordinateur, id=sujet_ordinateur_id)
+    if request.user == sujet_ordinateur.auteur:
+        sujet_ordinateur.delete()
+    return redirect('communaute_ordinateur')
+
+
+
+#--------Accessoire_telephone------------------
+
+def communaute_Accessoire_telephone(request) :
+        sujets = Sujet_Accessoire_telephone.objects.all()
+        return render(request, 'communaute_Accessoire_telephone.html', {'sujets': sujets})
+
+
+def creer_sujet_Accessoire_telephone(request):
+    if request.method == 'POST':
+        form = Sujet_Accessoire_telephoneForm(request.POST)
+        if form.is_valid():
+            sujet_Accessoire_telephone = form.save(commit=False)
+            sujet_Accessoire_telephone.auteur = request.user  # Associez l'utilisateur actuellement connecté en tant qu'auteur
+            sujet_Accessoire_telephone.save()
+            return redirect('communaute_Accessoire_telephone')
+    else:
+        form = Sujet_Accessoire_telephoneForm()
+    return render(request, 'creer_sujet_Accessoire_telephone.html', {'form': form})
+
+def details_sujet_Accessoire_telephone(request, sujet_Accessoire_telephone_id):
+    sujet_Accessoire_telephone = Sujet_Accessoire_telephone.objects.get(id=sujet_Accessoire_telephone_id)
+    commentaires = sujet_Accessoire_telephone.commentaires.all()  # Utilisez 'commentaires' ici
+
+    if request.method == 'POST':
+        form = Commentaire_Accessoire_telephoneForm(request.POST)
+        if form.is_valid():
+            commentaire_Accessoire_telephone = form.save(commit=False)
+            commentaire_Accessoire_telephone.sujet_Accessoire_telephone = sujet_Accessoire_telephone
+            commentaire_Accessoire_telephone.auteur = request.user
+            commentaire_Accessoire_telephone.save()
+            return redirect('details_sujet_Accessoire_telephone', sujet_Accessoire_telephone_id=sujet_Accessoire_telephone.id)
+    else:
+        form = Commentaire_Accessoire_telephoneForm()
+
+    return render(request, 'details_sujet_Accessoire_telephone.html', {'sujet_Accessoire_telephone': sujet_Accessoire_telephone, 'commentaires': commentaires, 'form': form})
+
+def supprimer_sujet_Accessoire_telephone(request, sujet_Accessoire_telephone_id):
+    sujet_Accessoire_telephone = get_object_or_404(Sujet_Accessoire_telephone, id=sujet_Accessoire_telephone_id)
+    if request.user == sujet_Accessoire_telephone.auteur:
+        sujet_Accessoire_telephone.delete()
+    return redirect('communaute_Accessoire_telephone')
+
+
+
+#--------Accessoire_tablette------------------
+
+def communaute_Accessoire_tablette(request) :
+        sujets = Sujet_Accessoire_tablette.objects.all()
+        return render(request, 'communaute_Accessoire_tablette.html', {'sujets': sujets})
+
+
+def creer_sujet_Accessoire_tablette(request):
+    if request.method == 'POST':
+        form = Sujet_Accessoire_tabletteForm(request.POST)
+        if form.is_valid():
+            sujet_Accessoire_tablette = form.save(commit=False)
+            sujet_Accessoire_tablette.auteur = request.user  # Associez l'utilisateur actuellement connecté en tant qu'auteur
+            sujet_Accessoire_tablette.save()
+            return redirect('communaute_Accessoire_tablette')
+    else:
+        form = Sujet_Accessoire_tabletteForm()
+    return render(request, 'creer_sujet_Accessoire_tablette.html', {'form': form})
+
+def details_sujet_Accessoire_tablette(request, sujet_Accessoire_tablette_id):
+    sujet_Accessoire_tablette = Sujet_Accessoire_tablette.objects.get(id=sujet_Accessoire_tablette_id)
+    commentaires = sujet_Accessoire_tablette.commentaires.all()  # Utilisez 'commentaires' ici
+
+    if request.method == 'POST':
+        form = Commentaire_Accessoire_tabletteForm(request.POST)
+        if form.is_valid():
+            commentaire_Accessoire_tablette = form.save(commit=False)
+            commentaire_Accessoire_tablette.sujet_Accessoire_tablette = sujet_Accessoire_tablette
+            commentaire_Accessoire_tablette.auteur = request.user
+            commentaire_Accessoire_tablette.save()
+            return redirect('details_sujet_Accessoire_tablette', sujet_Accessoire_tablette_id=sujet_Accessoire_tablette.id)
+    else:
+        form = Commentaire_Accessoire_tabletteForm()
+
+    return render(request, 'details_sujet_Accessoire_tablette.html', {'sujet_Accessoire_tablette': sujet_Accessoire_tablette, 'commentaires': commentaires, 'form': form})
+
+def supprimer_sujet_Accessoire_tablette(request, sujet_Accessoire_tablette_id):
+    sujet_Accessoire_tablette = get_object_or_404(Sujet_Accessoire_tablette, id=sujet_Accessoire_tablette_id)
+    if request.user == sujet_Accessoire_tablette.auteur:
+        sujet_Accessoire_tablette.delete()
+    return redirect('communaute_Accessoire_tablette')
+
+
+#--------Accessoire_ordinateur------------------
+
+def communaute_Accessoire_ordinateur(request) :
+        sujets = Sujet_Accessoire_ordinateur.objects.all()
+        return render(request, 'communaute_Accessoire_ordinateur.html', {'sujets': sujets})
+
+
+def creer_sujet_Accessoire_ordinateur(request):
+    if request.method == 'POST':
+        form = Sujet_Accessoire_ordinateurForm(request.POST)
+        if form.is_valid():
+            sujet_Accessoire_ordinateur = form.save(commit=False)
+            sujet_Accessoire_ordinateur.auteur = request.user  # Associez l'utilisateur actuellement connecté en tant qu'auteur
+            sujet_Accessoire_ordinateur.save()
+            return redirect('communaute_Accessoire_ordinateur')
+    else:
+        form = Sujet_Accessoire_ordinateurForm()
+    return render(request, 'creer_sujet_Accessoire_ordinateur.html', {'form': form})
+
+def details_sujet_Accessoire_ordinateur(request, sujet_Accessoire_ordinateur_id):
+    sujet_Accessoire_ordinateur = Sujet_Accessoire_ordinateur.objects.get(id=sujet_Accessoire_ordinateur_id)
+    commentaires = sujet_Accessoire_ordinateur.commentaires.all()  # Utilisez 'commentaires' ici
+
+    if request.method == 'POST':
+        form = Commentaire_Accessoire_ordinateurForm(request.POST)
+        if form.is_valid():
+            commentaire_Accessoire_ordinateur = form.save(commit=False)
+            commentaire_Accessoire_ordinateur.sujet_Accessoire_ordinateur = sujet_Accessoire_ordinateur
+            commentaire_Accessoire_ordinateur.auteur = request.user
+            commentaire_Accessoire_ordinateur.save()
+            return redirect('details_sujet_Accessoire_ordinateur', sujet_Accessoire_ordinateur_id=sujet_Accessoire_ordinateur.id)
+    else:
+        form = Commentaire_Accessoire_ordinateurForm()
+
+    return render(request, 'details_sujet_Accessoire_ordinateur.html', {'sujet_Accessoire_ordinateur': sujet_Accessoire_ordinateur, 'commentaires': commentaires, 'form': form})
+
+def supprimer_sujet_Accessoire_ordinateur(request, sujet_Accessoire_ordinateur_id):
+    sujet_Accessoire_ordinateur = get_object_or_404(Sujet_Accessoire_ordinateur, id=sujet_Accessoire_ordinateur_id)
+    if request.user == sujet_Accessoire_ordinateur.auteur:
+        sujet_Accessoire_ordinateur.delete()
+    return redirect('communaute_Accessoire_ordinateur')

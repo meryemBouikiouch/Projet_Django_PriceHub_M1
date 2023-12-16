@@ -1,0 +1,36 @@
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+  <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/styles.min.css' %}" />
+  <title>Details Sujet Accessoire_telephone</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <p class="card-subtitle mb-2 text-muted">Sujet créé par {{ sujet_Accessoire_telephone.auteur.username }}</p>
+        <h2>{{ sujet_Accessoire_telephone.titre }}</h2>
+        <p>{{ sujet_Accessoire_telephone.description }}</p>
+    
+        <h3>Commentaires</h3>
+        {% for commentaire in sujet_Accessoire_telephone.commentaires.all %}
+        <div class="card my-2">
+            <div class="card-body">
+                <p class="card-text">{{ commentaire.auteur.username }} : {{ commentaire.texte }}</p>
+            </div>
+        </div>
+        {% empty %}
+        <p>Aucun commentaire pour ce sujet.</p>
+        {% endfor %}
+    
+        <h3>Ajouter un commentaire</h3>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-success">Poster le Commentaire</button>
+        </form>
+        <a class="btn btn-primary" href="{% url 'communaute_Accessoire_telephone' %}">Retour à la communauté Accessoire téléphone</a>
+    </div>
+</body>
+</html>

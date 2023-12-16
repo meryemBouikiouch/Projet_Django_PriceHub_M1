@@ -1,0 +1,45 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/styles.min.css' %}" />    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>communaute_Accessoire_telephone</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Communauté Accessoire Téléphone</h1>
+    
+        <!-- Bouton pour créer un nouveau sujet -->
+        <div class="text-center mt-4">
+            <a href="{% url 'creer_sujet_Accessoire_telephone' %}" class="btn btn-success">Créer un Sujet</a>
+        </div>
+    
+        <!-- Liste des sujets existants -->
+        <div class="container mt-5">
+            <h2>Sujets Existant</h2>
+            {% for sujet in sujets %}
+            <div class="card my-2">
+                
+                <div class="card-body">
+                    <p class="card-subtitle mb-2 text-muted">Créé par {{ sujet.auteur.username }}</p>
+
+                    <h5 class="card-title">
+                        <a href="{% url 'details_sujet_Accessoire_telephone' sujet.id %}">{{ sujet.titre }}</a>
+                        <span >{{ sujet.commentaires.count }} Commentaires</span>
+                    </h5>
+
+
+                    <p class="card-text">{{ sujet.description | truncatewords:30 }}</p>
+                    {% if request.user == sujet.auteur %}
+                    <a href="{% url 'supprimer_sujet_Accessoire_telephone' sujet.id %}" class="btn btn-danger">Supprimer</a>
+                    {% endif %}
+                </div>
+            </div>
+            {% empty %}
+            <p>Aucun sujet n'a été trouvé.</p>
+            {% endfor %}
+        </div>
+    </div></body>
+</html>
