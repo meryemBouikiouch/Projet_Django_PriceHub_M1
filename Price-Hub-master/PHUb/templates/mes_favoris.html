@@ -1,0 +1,23 @@
+{% load static %}
+<!-- ou votre template de base -->
+
+{% block content %}
+<h2>Mes Favoris</h2>
+
+{% if favoris %}
+    <ul>
+    {% for favori in favoris %}
+        <li>
+            <h3>{{ favori.phone.phone_name }}</h3>
+            <p>Marque: {{ favori.phone.brand }}</p>
+            <p><img src="{{ favori.phone.image }}" alt="{{ favori.phone.phone_name }}" height="100"></p>
+            <!-- Lien pour retirer des favoris -->
+            <a href="{% url 'retirer_favori' favori.phone.identifiant %}">Retirer des Favoris</a>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Vous n'avez pas encore ajouté de téléphones à vos favoris.</p>
+{% endif %}
+
+{% endblock %}

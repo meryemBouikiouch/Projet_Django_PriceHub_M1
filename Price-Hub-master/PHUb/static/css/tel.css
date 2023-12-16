@@ -67,6 +67,25 @@ body {
     color: white;
 }
 
+/* Styles pour le bouton de favoris */
+.favorite-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2em; /* Ajustez la taille selon vos préférences */
+    color: #343a40; /* Couleur par défaut du bouton */
+}
+
+/* Styles lorsque le téléphone est marqué comme favori */
+.favorite-button.favorited {
+    color: red; /* Couleur indiquant que le téléphone est en favori */
+}
+
+/* Styles supplémentaires pour le hover */
+.favorite-button:hover {
+    color: #007bff; /* Couleur lors du survol du bouton */
+}
+
 /* Responsive styling for smaller screens */
 @media (max-width: 767px) {
     .card {

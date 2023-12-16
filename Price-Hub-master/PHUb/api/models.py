@@ -1,9 +1,9 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+
 class Phone(models.Model):
     identifiant = models.CharField(max_length=20, primary_key=True)
-<<<<<<< HEAD
     brand = models.CharField(max_length=100)
     phone_name = models.CharField(max_length=100)
     url = models.URLField(max_length=200)
@@ -38,7 +38,7 @@ class Phone(models.Model):
 
     def __str__(self):
         return self.phone_name
-=======
+
     brand = models.CharField(max_length=100, null=True, blank=True)
     phone_name = models.CharField(max_length=100, null=True, blank=True)
     url = models.URLField(max_length=200, null=True, blank=True)
@@ -70,6 +70,18 @@ class Phone(models.Model):
     def __str__(self):
         return self.phone_name
 # Create your models here.
+    
+class Favori(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    phone = models.ForeignKey(Phone, on_delete=models.CASCADE)
+    date_added = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('user', 'phone')
+
+    def __str__(self):
+        return f"{self.user.username} Ajouter à mes favoris {self.phone.phone_name}"
+    
 class HistoriqueVisite(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     category= models.CharField(max_length=100, null=True, blank=True)
@@ -123,7 +135,7 @@ class Meeting(models.Model):
 
     def __str__(self):
         return f"{self.user.username} - {self.category} - {self.store_name} - {self.location} - {self.date_of_meeting} - Participants: {self.get_participant_names()}"
-
+    
 
 class Groupe(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -145,4 +157,15 @@ class Personne(models.Model):
 
     def __str__(self):
         return self.user.username
->>>>>>> 352788c670aef8fa5b2fe4a67e06158b38c68c03
+
+class Invitation(models.Model):
+    inviter = models.ForeignKey(User, related_name='sent_invitations', on_delete=models.CASCADE, default=None)
+    invitee_name = models.CharField(max_length=255, default="")  
+    invitee_email = models.EmailField(default="") 
+    coupon_code = models.CharField(max_length=20, blank=True, null=True)
+    invitation_sent = models.BooleanField(default=False)
+    invitation_accepted = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"Invitation by {self.inviter.username} to {self.invitee_name} ({self.invitee_email})"
+    

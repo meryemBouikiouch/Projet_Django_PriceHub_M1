@@ -39,6 +39,16 @@
             height: 200px;
             object-fit: contain;
         }
+
+        .favorite-button {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+        }
+
+        .favorite-button.favorited {
+            color: red; /* Indique que le téléphone est en favori */
+        }
     </style>
     <title>Liste des téléphones</title>
 </head>
@@ -89,6 +99,10 @@
                             {% else %}
                                 <h2 class="card-title">{{ phone.phone_name }}</h2>
                             {% endif %}
+                            <!-- Bouton de favoris -->
+                            
+                            <a href="{% url 'ajouter_favori' phone.identifiant %}" class="favorite-button {% if phone in user.favori_set.all %}favorited{% endif %}">Favori</a>
+                            
                         </div>
                     </div>
                 </div>
@@ -120,8 +134,26 @@
                 addPhoneForm.style.display = (addPhoneForm.style.display === 'none' || addPhoneForm.style.display === '') ? 'block' : 'none';
                 advancedSearchForm.style.display = 'none'; // Cacher le formulaire de recherche avancée
             });
+
+            // Gestion des favoris
+            document.querySelectorAll('.favorite-button').forEach(button => {
+                let phoneId = button.getAttribute('onclick').split(',')[1].trim().replace(/'/g, '');
+                if (localStorage.getItem('fav-' + phoneId) === 'true') {
+                    button.classList.add('favorited');
+                }
+            });
         });
+
+        function toggleFavorite(button, phoneId) {
+            button.classList.toggle('favorited');
+            if (button.classList.contains('favorited')) {
+                localStorage.setItem('fav-' + phoneId, 'true');
+            } else {
+                localStorage.removeItem('fav-' + phoneId);
+            }
+        }
     </script>
+    
 </body>
 
 </html>

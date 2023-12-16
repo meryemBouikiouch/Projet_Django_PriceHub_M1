@@ -33,4 +33,10 @@ urlpatterns = [
     path('get_participants/', get_participants, name='get_participants'),
     path('supprimer_Meet/<int:meeting_id>/', supprimer_Meet, name='supprimer_Meet'),
 
+
+    path('inviter-ami/', views.inviter_ami, name='inviter_ami'),
+    path('confirmation-invitation/', views.confirmation_invitation, name='confirmation_invitation'),
+    path('ajouter_favori/<str:phone_id>/', views.ajouter_favori, name='ajouter_favori'),
+    path('retirer_favori/<str:phone_id>/', views.retirer_favori, name='retirer_favori'),
+    path('mes_favoris/', views.mes_favoris, name='mes_favoris'),
 ]
