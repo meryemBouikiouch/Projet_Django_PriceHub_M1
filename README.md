@@ -27,15 +27,12 @@ Installez les dépendances :
 cd Projet_Django_PriceHub_M1
 pip install -r requirements.txt
 
-Configuration : 
-
-Renommez le fichier .env.example en .env.
-Remplissez les informations nécessaires dans le fichier .env.
-
 Utilisation :
 
-Appliquer les migrations : python manage.py migrate
-Lancer le serveur de développement: python manage.py runserver
+Appliquer les migrations : - python manage.py makemigrations
+                           - python manage.py migrate
+                           
+Lancer le serveur de développement: - python manage.py runserver
 
 Ce projet est sous licence MIT
 
