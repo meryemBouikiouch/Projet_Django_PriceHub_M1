@@ -16,25 +16,25 @@ PriceHub est une plateforme web basée sur Django qui permet de comparer les pri
 
 ## Installation
 
-Assurez-vous d'avoir Python installé. 
+- Assurez-vous d'avoir Python installé. 
 
-Clonez ce repository :
+- Clonez ce repository :
 
 git clone https://github.com/meryemBouikiouch/Projet_Django_PriceHub_M1.git
 
-Installez les dépendances :
+- Installez les dépendances :
 
 cd Projet_Django_PriceHub_M1
 pip install -r requirements.txt
 
-Utilisation :
+- Utilisation :
 
-Appliquer les migrations : - python manage.py makemigrations
+- Appliquer les migrations : - python manage.py makemigrations
                            - python manage.py migrate
                            
-Lancer le serveur de développement: - python manage.py runserver
+- Lancer le serveur de développement: - python manage.py runserver
 
-Ce projet est sous licence MIT
+- Ce projet est sous licence MIT
 
 
 
