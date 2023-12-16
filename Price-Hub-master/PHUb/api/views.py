@@ -16,7 +16,9 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse
 from .models import Souhaits
 from .models import *
-
+from .forms import BudgetForm
+from .models import Budget
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -286,12 +288,23 @@ def changer_statut(request, souhait_id):
     if request.method == 'POST':
         # Filtrer le souhait basé sur l'utilisateur actuel
         souhait = get_object_or_404(Souhaits, pk=souhait_id, user=request.user)
-        # Mettez à jour le statut comme vous le souhaitez
+
+        # Vérifier si le statut est mis à jour à "Clôturé"
+        if souhait.status == 'Clôturé':
+            # Récupérer le groupe associé
+            groupe = Groupe.objects.filter(category=souhait.category, brand=souhait.brand, name=souhait.name).first()
+
+            # Retirer la personne du groupe
+            if groupe:
+                groupe.personnes.remove(souhait)
+
+        # Mettre à jour le statut comme vous le souhaitez
         souhait.status = 'Clôturé'
         souhait.save()
-        return JsonResponse({'success': True, 'nouveau_statut': souhait.status}) 
+        return JsonResponse({'success': True, 'nouveau_statut': souhait.status})
     else:
         return JsonResponse({'success': False})
+
         
 def groupe_view(request):
     categories = Souhaits.objects.values_list('category', flat=True).distinct()
@@ -307,7 +320,7 @@ def groupe_view(request):
         # Autres logiques de traitement du formulaire, si nécessaire
 
         # Récupération des personnes ayant le même souhait
-        personnes_du_groupe = Souhaits.objects.filter(category=category, brand=brand, name=name)
+        personnes_du_groupe = Souhaits.objects.filter(category=category, brand=brand, name=name, status='En cours de traitement')
 
         return render(request, 'groupe.html', {'categories': categories, 'marques': marques, 'noms': noms, 'personnes_du_groupe': personnes_du_groupe, 'category': category, 'brand': brand, 'name': name})
     else:
@@ -438,4 +451,36 @@ def supprimer_Meet(request, meeting_id):
     meeting.delete()
     return redirect('afficherMeet')
 
- 
+
+@login_required
+def Budjet(request):
+    if request.method == 'POST':
+        form = BudgetForm(request.POST, user=request.user)
+        if form.is_valid():
+            budget = form.save(commit=False)
+            budget.user = request.user
+            budget.save()
+            return redirect('afficherBudjet')
+    else:
+        form = BudgetForm(user=request.user)
+
+    return render(request, 'Budjet.html', {'form': form})
+
+@login_required
+def afficher_budjet(request):
+    # Filtrer les budgets de l'utilisateur connecté
+    budgets = Budget.objects.filter(user=request.user)
+    return render(request, 'afficher_budjet.html', {'budgets': budgets})
+@login_required
+def supprimer_budjet(request, budget_id):
+    budget = get_object_or_404(Budget, id=budget_id, user=request.user)
+    budget.delete()
+    return redirect('afficherBudjet')
+
+
+def supprimer_groupe(request, groupe_id):
+    groupe = get_object_or_404(Groupe, id=groupe_id)
+    
+    # Traitement pour supprimer le groupe
+    groupe.delete()
+    return redirect('mes_groupes')

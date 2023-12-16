@@ -2,33 +2,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="{% static 'css/stylestb.css' %}" />
     <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}" />
     <link rel="stylesheet" href="{% static 'css/styles.min.css' %}" />
-    <title>Mes Groupes</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <title>Afficher les budgets</title>
 </head>
 <body>
+    <h1>Liste des budgets</h1>
 
-<h1>Mes Groupes</h1>
-
-{% if groupes %}
     <ul class="budget-list">
-        {% for groupe in groupes %}
+        {% for budget in budgets %}
             <div class="visite-container">
                 <div class="visite-info">
                     <div class="visite-header">
-                        <p>{{ groupe.nom }}</p>
+                        <p> Type: {{ budget.type }}</p>
                     </div>
                     <div class="visite-details">
-                        <!-- Ajoutez d'autres informations du groupe ici -->
+                        <p>Souhait: {{ budget.souhait }}</p>
+                        <p>Meet: {{ budget.meet }}</p>
+                        <p>Montant: {{ budget.montant }}</p>
                     </div>
                 </div>
                 <!-- Bouton de suppression -->
                 <div class="btn-container">
-                    <form method="post" action="{% url 'supprimer_groupe' groupe_id=groupe.id %}" style="display: inline;">
+                    <form method="post" action="{% url 'supprimerBudjet' budget.id %}" style="display: inline;">
                         {% csrf_token %}
                         <button type="submit" class="btn btn-danger">Supprimer</button>
                     </form>
@@ -36,10 +38,7 @@
             </div>
         {% endfor %}
     </ul>
-{% else %}
-    <p>Aucun groupe trouvé.</p>
-{% endif %}
-<a href="{% url 'groupe' %}" class="btn btn-primary">Ajouter un Groupe</a>
+
+    <a href="{% url 'Budjet' %}" class="btn btn-primary">Ajouter un budget</a>
 </body>
 </html>
-
