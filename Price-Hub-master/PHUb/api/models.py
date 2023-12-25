@@ -2,7 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.conf import settings
 from django.contrib.auth.models import User
-<<<<<<< HEAD
+
 class Ordinateur(models.Model):
     nom_produit = models.CharField(max_length=255)
     etoiles = models.FloatField()
@@ -17,9 +17,7 @@ class Ordinateur(models.Model):
 
     def __str__(self):
         return self.nom_produit
-=======
 
->>>>>>> Dia
 class Phone(models.Model):
     identifiant = models.CharField(max_length=20, primary_key=True)
     brand = models.CharField(max_length=100)
@@ -153,7 +151,6 @@ class Meeting(models.Model):
     def __str__(self):
         return f"{self.user.username} - {self.category} - {self.store_name} - {self.location} - {self.date_of_meeting} - Participants: {self.get_participant_names()}"
     
-<<<<<<< HEAD
 
 #-----------telephone------
 class Sujet_telephone(models.Model):
@@ -274,8 +271,7 @@ class Commentaire_Accessoire_ordinateur(models.Model):
 
     def __str__(self):
         return f"Commentaire par {self.auteur.username} sur {self.sujet_Accessoire_ordinateur.titre}"
-=======
->>>>>>> Dia
+
 
 class Groupe(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -299,7 +295,7 @@ class Personne(models.Model):
     def __str__(self):
         return self.user.username
 
-<<<<<<< HEAD
+
 
 class Budget(models.Model):
     TYPE_CHOICES = [
@@ -316,7 +312,6 @@ class Budget(models.Model):
     def __str__(self):
         return f"{self.type} - {self.souhait} - {self.meet} - {self.montant}"
 
-=======
 class Invitation(models.Model):
     inviter = models.ForeignKey(User, related_name='sent_invitations', on_delete=models.CASCADE, default=None)
     invitee_name = models.CharField(max_length=255, default="")  
@@ -328,4 +323,4 @@ class Invitation(models.Model):
     def __str__(self):
         return f"Invitation by {self.inviter.username} to {self.invitee_name} ({self.invitee_email})"
     
->>>>>>> Dia
+
