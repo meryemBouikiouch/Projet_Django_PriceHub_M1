@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Carte des Magasins</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+</head>
+<body>
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" name="address" placeholder="Entrez une adresse">
+        <button type="submit">Rechercher des magasins à proximité</button>
+    </form>
+    <div id="mapid" style="height: 400px;"></div>
+
+    <script>
+        var map = L.map('mapid').setView([48.8566, 2.3522], 13);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19
+        }).addTo(map);
+        // Création d'une icône de marqueur rouge
+        var redIcon = new L.Icon({
+            iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
+            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41]
+        });
+        {% if shops %}
+            {% for shop in shops %}
+                L.marker([{{ shop.lat }}, {{ shop.lon }}]).addTo(map)
+                    .bindPopup("{{ shop.name }}");
+            {% endfor %}
+        {% endif %}
+
+        {% if start_lat and start_lon %}
+            L.marker([{{ start_lat }}, {{ start_lon }}], {icon: redIcon}).addTo(map)
+                .bindPopup("{{ address_entered|default:'Adresse non spécifiée' }}");
+        {% endif %}
+    </script>
+</body>
+</html>

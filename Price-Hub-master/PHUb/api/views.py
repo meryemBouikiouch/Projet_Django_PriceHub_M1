@@ -16,15 +16,19 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse
 from .models import Souhaits
 from .models import *
-
 from .forms import *
-
-
 from .forms import BudgetForm
 from .models import Budget
 from django.contrib.auth.decorators import login_required
-
-
+from .models import MobileShop
+import json
+from .utils import convert_coords
+import re
+from geopy.distance import geodesic
+import requests
+import polyline
+# from django.contrib.gis.db.models.functions import Distance
+# from django.contrib.gis.geos import Point
 
 # Create your views here.
 def log_in(request):
@@ -753,3 +757,70 @@ def supprimer_groupe(request, groupe_id):
     groupe.delete()
     return redirect('mes_groupes')
 
+
+def extract_lat_lon(the_geom):
+    # Extrait les coordonnées X et Y du champ the_geom qui est au format WKT
+    match = re.search(r'POINT \(([^ ]+) ([^ ]+)\)', the_geom)
+    if match:
+        x, y = match.groups()
+        lat, lon = convert_coords(float(x), float(y))
+        return lat, lon
+    return None, None
+def geocode_address(address):
+    # Utiliser Nominatim pour géocoder l'adresse
+    params = {'q': address, 'format': 'json'}
+    response = requests.get("https://nominatim.openstreetmap.org/search", params=params)
+    data = response.json()
+    if data:
+        lat = float(data[0]['lat'])
+        lon = float(data[0]['lon'])
+        return lat, lon
+    else:
+        return None, None
+    
+def get_route(start, end):
+    # Utilisation de l'API OSM pour obtenir l'itinéraire
+    url = f"https://router.project-osrm.org/route/v1/driving/{start[1]},{start[0]};{end[1]},{end[0]}?overview=full"
+    response = requests.get(url)
+    data = response.json()
+    # Extrait les coordonnées de l'itinéraire
+    if 'routes' in data and data['routes']:
+        route_coords_encoded = data['routes'][0]['geometry']
+        route_coords = polyline.decode(route_coords_encoded) 
+        return route_coords
+    else:
+        return None
+    
+def shops_near_address(lat, lon, max_distance=0.5):
+    # Récupérer tous les magasins de la base de données
+    shops = MobileShop.objects.all()
+    shops_nearby = []
+
+    for shop in shops:
+        shop_lat, shop_lon = extract_lat_lon(shop.the_geom)
+        if shop_lat is not None and shop_lon is not None:
+            # Calculer la distance entre le magasin et l'adresse
+            distance = geodesic((lat, lon), (shop_lat, shop_lon)).km
+            if distance <= max_distance:
+                shops_nearby.append({
+                    'name': shop.name,
+                    'lat': shop_lat,
+                    'lon': shop_lon
+                })
+
+    return shops_nearby
+
+def carte(request):
+    shop_data = []
+    start_lat = start_lon = None
+    address_entered = ""
+    if request.method == 'POST':
+        address = request.POST.get('address')
+        start_lat, start_lon = geocode_address(address)
+        address_entered = address
+
+        # Trouver les magasins à proximité de l'adresse
+        if start_lat and start_lon:
+            shop_data = shops_near_address(start_lat, start_lon)
+
+    return render(request, 'carte.html', {'shops': shop_data, 'start_lat': start_lat, 'start_lon': start_lon,'address_entered': address_entered})

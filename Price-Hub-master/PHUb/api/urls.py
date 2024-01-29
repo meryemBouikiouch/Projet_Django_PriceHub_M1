@@ -79,6 +79,8 @@ urlpatterns = [
     path('supprimer_budjet/<int:budget_id>/', supprimer_budjet, name='supprimerBudjet'),
     path('afficherBudjet/', afficher_budjet, name='afficher_budjet'),
     path('supprimer_groupe/<int:groupe_id>/', supprimer_groupe, name='supprimer_groupe'),
+    path('carte/', carte, name='carte'),
+
 
 
 

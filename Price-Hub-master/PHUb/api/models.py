@@ -260,3 +260,21 @@ class Budget(models.Model):
     def __str__(self):
         return f"{self.type} - {self.souhait} - {self.meet} - {self.montant}"
 
+# localisation des shop_mobile
+   
+
+class MobileShop(models.Model):
+    osm_id = models.BigIntegerField(unique=True)
+    shop = models.CharField(max_length=255, blank=True)
+    name = models.CharField(max_length=255, blank=True)
+    addr_housenumber = models.CharField(max_length=255, blank=True)
+    addr_street = models.CharField(max_length=255, blank=True)
+    addr_city = models.CharField(max_length=255, blank=True)
+    addr_postcode = models.CharField(max_length=255, blank=True)
+    the_geom = models.TextField()  # ou utiliser un champ géospatial si vous utilisez GeoDjango
+    osm_original_geom = models.TextField()  # idem
+    osm_type = models.CharField(max_length=255, blank=True)
+
+    def __str__(self):
+      return f"{self.osm_id} - {self.shop} - {self.name} - {self.addr_housenumber}- {self.addr_street}- {self.addr_city}-{self.addr_postcode}- {self.the_geom}- {self.osm_original_geom}- {self.osm_type}"
+
