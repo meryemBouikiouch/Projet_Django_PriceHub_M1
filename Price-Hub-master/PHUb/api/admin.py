@@ -6,6 +6,7 @@ from .models import *
 admin.site.register(HistoriqueVisite)
 admin.site.register(Souhaits)
 admin.site.register(Meeting)
+admin.site.register(MobileShop)
 
 admin.site.register(Commentaire_telephone)
 admin.site.register(Sujet_telephone)

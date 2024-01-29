@@ -28,7 +28,10 @@ class AddPhoneForm(forms.ModelForm):
     def clean(self):
         cleaned_data = super().clean()
         return cleaned_data
+<<<<<<< HEAD
 
+=======
+>>>>>>> meryem
 class Sujet_telephoneForm(forms.ModelForm):
     class Meta:
         model = Sujet_telephone
@@ -124,5 +127,8 @@ class BudgetForm(forms.ModelForm):
             raise forms.ValidationError("Le champ 'souhait' ne doit pas être spécifié pour un budget de meet.")
 
         return cleaned_data
+<<<<<<< HEAD
 
+=======
+>>>>>>> meryem
 

@@ -16,61 +16,50 @@ PriceHub est une plateforme web basée sur Django qui permet de comparer les pri
 
 ## Installation
 
-Assurez-vous d'avoir Python installé. 
+- Assurez-vous d'avoir Python installé. 
 
-Clonez ce repository :
+- Clonez ce repository :
 
 git clone https://github.com/meryemBouikiouch/Projet_Django_PriceHub_M1.git
 
-Installez les dépendances :
+- Installez les dépendances :
 
 cd Projet_Django_PriceHub_M1
 pip install -r requirements.txt
 
-Configuration : 
+- Utilisation :
 
-Renommez le fichier .env.example en .env.
-Remplissez les informations nécessaires dans le fichier .env.
+- Appliquer les migrations : - python manage.py makemigrations
+                           - python manage.py migrate
+                           
+- Lancer le serveur de développement: - python manage.py runserver
 
-Utilisation :
+- Ce projet est sous licence MIT
 
-Appliquer les migrations : python manage.py migrate
-Lancer le serveur de développement: python manage.py runserver
 
-Ce projet est sous licence MIT
 
 # Fonctionnalités Principales
 
 ## Recherche et Sélection de Téléphones
 
-- **Recherche Simple ou Avancée :** Les utilisateurs peuvent rechercher des téléphones avec des filtres avancés tels que le prix et les spécifications.
-
 ## Recherche d'Offres en Se Déplaçant dans les Magasins de Téléphones
-
-- **Collecte d'Informations en Déplacement :** Utilisateurs enregistrent les prix de téléphones en se déplaçant.
-- **Enregistrement des Données sur l'Application :** Les données sont saisies dans l'application pour comparaison.
 
 ## Ajout d'une Fonctionnalité de Liste de Souhaits
 
-- **Création de Liste de Souhaits :** Utilisateurs créent des listes pour se rappeler des articles.
-- **Diversification des Catégories :** Inclut différents types de produits pour une liste complète.
-- **Fermeture des Souhaits :** Possibilité de marquer un souhait comme accompli après l'achat.
-
 ## Fonctionnalité d'Ajout/Modification de Téléphones
-
-- **Ajout Manuel dans la Base de Données :** Utilisateurs ajoutent des téléphones manquants.
-- **Modification des Prix :** Ils ajustent les prix lors de changements en magasin.
-- **Actualisation de la Base de Données Collaborative :** Les modifications contribuent à une base de données collaborative.
 
 ## Création de Groupes et Collaboration
 
-- **Formation de Groupes :** Utilisateurs créent des groupes pour partager des souhaits d'achat.
-- **Communication Facilitée :** L'application facilite les discussions sur les prix et les offres.
-- **Historique Collaboratif :** Les membres notent les lieux visités et les prix pour des comparaisons collaboratives.
+## Organisation de Shopping Meetings 
 
-## Organisation de Shopping Meetings (Groupes de Sorties)
+##  Création de Budget
 
-- **Création de Shopping Meetings :** Possibilité de planifier des sorties communes.
-- **Planification de Sorties Communes :** Les groupes visitent des lieux correspondant à leurs souhaits.
-- **Entraide et Découverte des Meilleures Offres :** Favorise l'entraide pour dénicher les meilleures offres.
->>>>>>> 352788c670aef8fa5b2fe4a67e06158b38c68c03
+## Communauté Interactive
+
+## Gestion Dynamique des Groupes
+
+## Fonctionnalité des Favoris
+
+## Fonctionnalité d'Invitation
+
+

@@ -18,6 +18,10 @@ class Ordinateur(models.Model):
     def __str__(self):
         return self.nom_produit
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> meryem
 class Phone(models.Model):
     identifiant = models.CharField(max_length=20, primary_key=True)
     brand = models.CharField(max_length=100)
@@ -151,6 +155,10 @@ class Meeting(models.Model):
     def __str__(self):
         return f"{self.user.username} - {self.category} - {self.store_name} - {self.location} - {self.date_of_meeting} - Participants: {self.get_participant_names()}"
     
+<<<<<<< HEAD
+=======
+
+>>>>>>> meryem
 
 #-----------telephone------
 class Sujet_telephone(models.Model):
@@ -271,7 +279,10 @@ class Commentaire_Accessoire_ordinateur(models.Model):
 
     def __str__(self):
         return f"Commentaire par {self.auteur.username} sur {self.sujet_Accessoire_ordinateur.titre}"
+<<<<<<< HEAD
 
+=======
+>>>>>>> meryem
 
 class Groupe(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -295,7 +306,10 @@ class Personne(models.Model):
     def __str__(self):
         return self.user.username
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> meryem
 
 class Budget(models.Model):
     TYPE_CHOICES = [
@@ -312,6 +326,29 @@ class Budget(models.Model):
     def __str__(self):
         return f"{self.type} - {self.souhait} - {self.meet} - {self.montant}"
 
+<<<<<<< HEAD
+=======
+
+# localisation des shop_mobile
+   
+
+class MobileShop(models.Model):
+    osm_id = models.BigIntegerField(unique=True)
+    shop = models.CharField(max_length=255, blank=True)
+    name = models.CharField(max_length=255, blank=True)
+    addr_housenumber = models.CharField(max_length=255, blank=True)
+    addr_street = models.CharField(max_length=255, blank=True)
+    addr_city = models.CharField(max_length=255, blank=True)
+    addr_postcode = models.CharField(max_length=255, blank=True)
+    the_geom = models.TextField()  # ou utiliser un champ géospatial si vous utilisez GeoDjango
+    osm_original_geom = models.TextField()  # idem
+    osm_type = models.CharField(max_length=255, blank=True)
+
+    def __str__(self):
+      return f"{self.osm_id} - {self.shop} - {self.name} - {self.addr_housenumber}- {self.addr_street}- {self.addr_city}-{self.addr_postcode}- {self.the_geom}- {self.osm_original_geom}- {self.osm_type}"
+
+
+>>>>>>> meryem
 class Invitation(models.Model):
     inviter = models.ForeignKey(User, related_name='sent_invitations', on_delete=models.CASCADE, default=None)
     invitee_name = models.CharField(max_length=255, default="")  
@@ -323,4 +360,7 @@ class Invitation(models.Model):
     def __str__(self):
         return f"Invitation by {self.inviter.username} to {self.invitee_name} ({self.invitee_email})"
     
+<<<<<<< HEAD
 
+=======
+>>>>>>> meryem
