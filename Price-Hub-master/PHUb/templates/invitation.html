@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Invitations</title>
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+    <!-- Ajoutez d'autres liens CSS si nécessaire -->
+</head>
+<body>
+    <div class="container">
+        <h1>Invitations</h1>
+        
+        <!-- Message de Confirmation -->
+        <div id="confirmationMessage" style="display: none;">
+            <p>Invitation(s) envoyée(s) avec succès!</p>
+        </div>
+
+        {% for invitation in invitations %}
+            <div class="invitation-card">
+                <p>Invitation à {{ invitation.meeting.store_name }} le {{ invitation.meeting.date_of_meeting }}</p>
+                <form method="post" action="{% url 'accept_invitation' invitation.id %}" class="invitation-form">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-success">Accepter</button>
+                </form>
+                <form method="post" action="{% url 'reject_invitation' invitation.id %}" class="invitation-form">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Refuser</button>
+                </form>
+            </div>
+        {% endfor %}
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.invitation-form').forEach(function(form) {
+                form.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    const formData = new FormData(this);
+
+                    fetch(this.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'X-CSRFToken': '{{ csrf_token }}'
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        alert(data.message); // Afficher un message de confirmation
+                        this.closest('.invitation-card').remove(); // Supprimer la carte d'invitation traitée
+                    })
+                    .catch(error => console.error('Erreur:', error));
+                });
+            });
+        });
+    </script>
+</body>
+</html>

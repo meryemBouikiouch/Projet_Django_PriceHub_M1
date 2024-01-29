@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Inviter un ami</title>
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet"> 
+    <!-- Vous pouvez inclure ici des liens vers vos fichiers CSS et JavaScript pour styliser le formulaire. -->
+</head>
+<body>
+    <h1>Inviter un ami</h1>
+    <form method="post" action="{% url 'inviter_ami' %}">
+        {% csrf_token %}
+        <label for="nom_ami">Nom de l'ami :</label>
+        <input type="text" id="nom_ami" name="nom_ami" required>
+        <br>
+        <label for="prenom_ami">Prénom de l'ami :</label>
+        <input type="text" id="prenom_ami" name="prenom_ami" required>
+        <br>
+        <label for="email_ami">Adresse e-mail de l'ami :</label>
+        <input type="email" id="email_ami" name="email_ami" required>
+        <br>
+        <input type="submit" value="Envoyer l'invitation">
+    </form>
+</body>
+</html>
