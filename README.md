@@ -61,5 +61,6 @@ pip install -r requirements.txt
 ## Fonctionnalité des Favoris
 
 ## Fonctionnalité d'Invitation
+## Affichage des Magasins à Proximité sur une Carte
 
 
