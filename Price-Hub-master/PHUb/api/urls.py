@@ -34,11 +34,7 @@ urlpatterns = [
     path('planifier_reunion/',planifier_reunion,name='planifier_reunion'),
     path('get_participants/', get_participants, name='get_participants'),
     path('supprimer_Meet/<int:meeting_id>/', supprimer_Meet, name='supprimer_Meet'),
-<<<<<<< HEAD
 
-
-=======
->>>>>>> meryem
     path('communaute/',communaute,name='communaute'),
     path('communaute_telephone/',communaute_telephone,name='communaute_telephone'),
     path('sujets_telephone/creer_telephone/', views.creer_sujet_telephone, name='creer_sujet_telephone'),
