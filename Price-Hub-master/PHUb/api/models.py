@@ -17,7 +17,11 @@ class Ordinateur(models.Model):
 
     def __str__(self):
         return self.nom_produit
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> 051ad5823e182c5908ae004c363ab73fc09886e0
 class Phone(models.Model):
     identifiant = models.CharField(max_length=20, primary_key=True)
     brand = models.CharField(max_length=100)
@@ -150,8 +154,12 @@ class Meeting(models.Model):
 
     def __str__(self):
         return f"{self.user.username} - {self.category} - {self.store_name} - {self.location} - {self.date_of_meeting} - Participants: {self.get_participant_names()}"
+<<<<<<< HEAD
     
 
+=======
+  
+>>>>>>> 051ad5823e182c5908ae004c363ab73fc09886e0
 
 #-----------telephone------
 class Sujet_telephone(models.Model):
@@ -313,7 +321,10 @@ class Budget(models.Model):
     def __str__(self):
         return f"{self.type} - {self.souhait} - {self.meet} - {self.montant}"
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 051ad5823e182c5908ae004c363ab73fc09886e0
 
 # localisation des shop_mobile
    

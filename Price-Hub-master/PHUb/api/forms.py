@@ -124,4 +124,8 @@ class BudgetForm(forms.ModelForm):
             raise forms.ValidationError("Le champ 'souhait' ne doit pas être spécifié pour un budget de meet.")
 
         return cleaned_data
+<<<<<<< HEAD
+=======
+
+>>>>>>> 051ad5823e182c5908ae004c363ab73fc09886e0
 
