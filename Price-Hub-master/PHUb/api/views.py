@@ -31,6 +31,10 @@ import re
 from geopy.distance import geodesic
 import requests
 import polyline
+
+from rest_framework import viewsets
+from .models import Phone
+from .serializers import PhoneSerializer
 # from django.contrib.gis.db.models.functions import Distance
 # from django.contrib.gis.geos import Point
 
@@ -797,7 +801,7 @@ def get_route(start, end):
     else:
         return None
     
-def shops_near_address(lat, lon, max_distance=0.5):
+def shops_near_address(lat, lon, max_distance=1.0):
     # Récupérer tous les magasins de la base de données
     shops = MobileShop.objects.all()
     shops_nearby = []
@@ -862,3 +866,8 @@ def mes_favoris(request):
     return render(request, 'mes_favoris.html', {'favoris': favoris})
 
 
+
+#APIrest pour phone
+class PhoneViewSet(viewsets.ModelViewSet):
+    queryset = Phone.objects.all()
+    serializer_class = PhoneSerializer

@@ -2,6 +2,9 @@ from django import views
 from django.urls import  path
 from .views import *
 from . import views
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from .views import PhoneViewSet
 
 
 urlpatterns = [
@@ -87,6 +90,8 @@ urlpatterns = [
     path('ajouter_favori/<str:phone_id>/', views.ajouter_favori, name='ajouter_favori'),
     path('retirer_favori/<str:phone_id>/', views.retirer_favori, name='retirer_favori'),
     path('mes_favoris/', views.mes_favoris, name='mes_favoris'),
+
+
 
 
 
